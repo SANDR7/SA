@@ -1,0 +1,16 @@
+// {
+//   "editor.codeActionsOnSave": {
+//     "source.fixAll.eslint": true,
+//     "source.fixAll.format": true
+//   },
+//   "files.exclude": {
+//     "*/*.d.ts": true,
+//     "*.md": true,
+//     // ".gitignore": true,
+//     ".prettierignore": true,
+//     "package-lock.json": true,
+//     "*/node_modules/": true,
+//     ".eslintrc.json": true,
+//     "tsconfig.json": true,
+//   }
+// }

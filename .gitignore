@@ -1,0 +1,48 @@
+### All
+*/node_modules
+*/*.lock
+*.env
+*/*.env.*
+
+## Nextjs
+
+# dependencies
+nextjs/.pnp
+nextjs/.pnp.js
+
+# testing
+nextjs/coverage
+
+# next.js
+nextjs/.next/
+nextjs/out/
+
+# production
+nextjs/build
+
+# misc
+nextjs/.DS_Store
+nextjs/*.pem
+
+# debug
+nextjs/npm-debug.log*
+nextjs/yarn-debug.log*
+nextjs/yarn-error.log*
+nextjs/.pnpm-debug.log*
+
+nextjs/plasmic.json
+
+# local env files
+nextjs/.env*.local
+
+# vercel
+nextjs/.vercel
+
+# typescript
+nextjs/*.tsbuildinfo
+
+## Sanity
+
+sanity/sanity.json
+sanity/dist
+sanity/config
