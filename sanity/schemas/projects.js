@@ -95,7 +95,7 @@ export default {
           { value: "brand", title: "Brand" },
         ],
       },
-      validation: (Rule) => Rule.length(1),
+      validation: (Rule) => Rule.max(1).required(),
     },
     // Website inputs
     {
@@ -119,7 +119,7 @@ export default {
       hidden: ({ document }) => {
         return showField(document, "website");
       },
-      validation: (Rule) => Rule.max(4) && Rule.unique(),
+      validation: (Rule) => Rule.max(4).unique(),
     },
     // Graphic inputs
     // Brand inputs
