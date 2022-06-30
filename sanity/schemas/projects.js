@@ -1,15 +1,13 @@
+import showField from "../functions";
+
 export default {
   name: "projects",
   title: "Projects",
   type: "document",
   groups: [
     {
-      name: "develop",
-      title: "Dev specific",
-    },
-    {
-      name: "design",
-      title: "Design specific",
+      name: "seo",
+      title: "SEO",
     },
   ],
   fields: [
@@ -17,13 +15,33 @@ export default {
     {
       name: "title",
       title: "Title",
+      type: "string",
+      group: "seo",
+    },
+    {
+      name: "client",
+      title: "Client",
       description: "Name of client",
       type: "string",
+    },
+    {
+      name: "description",
+      title: "Description",
+      type: "string",
+      group: "seo",
+    },
+    {
+      name: "keywords",
+      title: "Keywords",
+      type: "array",
+      group: "seo",
+      of: [{ type: "string" }],
     },
     {
       name: "slug",
       title: "Slug",
       type: "slug",
+      group: "seo",
       options: {
         source: "title",
         maxLength: 200, // will be ignored if slugify is set
@@ -32,78 +50,78 @@ export default {
       },
     },
     {
-      name: "description",
-      title: "Description",
-      type: "string",
-    },
-    {
       name: "thumbnail",
-      title: "Thumbnail image",
+      title: "Thumbnail",
       type: "image",
-    },
-    {
-      name: "body",
-      title: "Body",
-      type: "array",
-      description: "write the case study",
-      of: [{ type: "block" }],
-    },
-    {
-      name: "date_delivered",
-      title: "Date delivered",
-      description: "Date when project went online",
-      type: "date",
+      group: "seo",
       options: {
-        dateFormat: "DD MMMM YYYY",
-        calendarTodayLabel: "Today",
+        hotspot: true, // <-- Defaults to false
       },
-    },
-    // for dev projects
-    {
-      name: "repository_url",
-      title: "Repository url",
-      description: "Github repository",
-      type: "url",
-      group: "develop",
-    },
-    {
-      name: "website_online",
-      title: "Website online",
-      group: "develop",
-      type: "boolean",
-    },
-    {
-      name: "website_url",
-      title: "Website url",
-	  description: 'Hosted website link',
-      type: "url",
-      group: "develop",
-      hidden: ({ document }) => !document?.website_online,
+      fields: [
+        {
+          name: "caption",
+          type: "string",
+          title: "Caption",
+          options: {
+            isHighlighted: true, // <-- make this field easily accessible
+          },
+        },
+        {
+          // Editing this field will be hidden behind an "Edit"-button
+          name: "attribution",
+          type: "string",
+          title: "Attribution",
+        },
+      ],
     },
     {
-      name: "tech_stack",
-      title: "Tech stack",
-      description: "List of used techniques",
+      title: 'Finished date',
+      name: 'finished_date',
+      type: 'date',
+      options: {
+        dateFormat: 'MMM YYYY',
+        calendarTodayLabel: 'Today'
+      }
+    },
+    {
+      name: "type",
+      title: "Type",
       type: "array",
-      group: "develop",
       of: [{ type: "string" }],
       options: {
-        layout: "tags",
+        list: [
+          { value: "website", title: "Website" },
+          { value: "graphic", title: "Graphic" },
+          { value: "brand", title: "Brand" },
+        ],
+      },
+      validation: (Rule) => Rule.length(1),
+    },
+    // Website inputs
+    {
+      title: "Repository link",
+      name: "repo_link",
+      description: "Git source link",
+      type: "url",
+      validation: (Rule) =>
+        Rule.uri({
+          scheme: ["http", "https"],
+        }),
+      hidden: ({ document }) => {
+        return showField(document, "website");
       },
     },
-    // for design projects
     {
-      name: "dribbble_url",
-      title: "Dribbble url",
-      type: "url",
-      group: "design",
-    },
-    {
-      name: "gallery",
-      title: "Gallery",
+      name: "used_tech",
+      title: "Used skills",
       type: "array",
-      group: "design",
-      of: [{ type: "image" }],
+      of: [{ type: "reference", to: [{ type: "skills" }] }],
+      hidden: ({ document }) => {
+        return showField(document, "website");
+      },
+      validation: (Rule) => Rule.max(4) && Rule.unique(),
     },
+    // Graphic inputs
+    // Brand inputs
   ],
 };
