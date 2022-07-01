@@ -1,4 +1,4 @@
-import showField from "../functions";
+import showField from "../functions/validation";
 
 export default {
   name: "projects",
