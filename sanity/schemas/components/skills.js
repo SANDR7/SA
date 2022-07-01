@@ -37,4 +37,18 @@ export default {
       type: "image",
     },
   ],
+  preview: {
+    select: {
+      title: "name",
+      media: 'logo',
+      type: "type",
+    },
+    prepare: ({ title, media, type }) => {
+      return {
+        title,
+        subtitle: type[0],
+        media,
+      };
+    },
+  },
 };

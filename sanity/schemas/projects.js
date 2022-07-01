@@ -75,13 +75,13 @@ export default {
       ],
     },
     {
-      title: 'Finished date',
-      name: 'finished_date',
-      type: 'date',
+      title: "Finished date",
+      name: "finished_date",
+      type: "date",
       options: {
-        dateFormat: 'MMM YYYY',
-        calendarTodayLabel: 'Today'
-      }
+        dateFormat: "MMMM YYYY",
+        calendarTodayLabel: "Today",
+      },
     },
     {
       name: "type",
@@ -99,6 +99,27 @@ export default {
     },
     // Website inputs
     {
+      title: "Live link",
+      name: "live_link",
+      description: "Hosted website link",
+      type: "url",
+      validation: (Rule) =>
+        Rule.uri({
+          scheme: ["http", "https"],
+        }),
+      hidden: ({ document }) => {
+        return showField(document, "website");
+      },
+    },
+    {
+      title: "Open source?",
+      name: "open_source",
+      type: "boolean",
+      hidden: ({ document }) => {
+        return showField(document, "website");
+      },
+    },
+    {
       title: "Repository link",
       name: "repo_link",
       description: "Git source link",
@@ -108,7 +129,10 @@ export default {
           scheme: ["http", "https"],
         }),
       hidden: ({ document }) => {
-        return showField(document, "website");
+        const type = showField(document, "website");
+        const openSource = !document?.open_source;
+
+        return type ? true : (openSource ? true : false);
       },
     },
     {
@@ -121,7 +145,95 @@ export default {
       },
       validation: (Rule) => Rule.max(4).unique(),
     },
+    {
+      title: "Development process",
+      name: "dev_process",
+      description: "Write your case study",
+      type: "markdown",
+      hidden: ({ document }) => {
+        return showField(document, "website");
+      },
+    },
     // Graphic inputs
+    {
+      title: "Saved link",
+      name: "saved_link",
+      description: "Source link",
+      type: "url",
+      validation: (Rule) =>
+        Rule.uri({
+          scheme: ["https"],
+        }),
+      hidden: ({ document }) => {
+        return showField(document, "graphic");
+      },
+    },
+    {
+      name: "tags",
+      title: "Tags",
+      type: "array",
+      of: [{ type: "string" }],
+      options: {
+        layout: 'tags'
+      },
+      hidden: ({ document }) => {
+        return showField(document, "graphic");
+      },
+    },
+    {
+      title: "Body",
+      name: "design_process",
+      description: "Write your case study",
+      type: "markdown",
+      hidden: ({ document }) => {
+        return showField(document, "graphic");
+      },
+    },
+    {
+      name: "gallery",
+      title: "Gallery",
+      type: "array",
+      of: [{ type: "image" }],
+      hidden: ({ document }) => {
+        return showField(document, "graphic");
+      },
+    },
     // Brand inputs
+    {
+      title: "Client link",
+      name: "client_link",
+      description: "Company website",
+      type: "url",
+      validation: (Rule) =>
+        Rule.uri({
+          scheme: ["http", "https"],
+        }),
+      hidden: ({ document }) => {
+        return showField(document, "brand");
+      },
+    },
+    {
+      title: "Body",
+      name: "brand_process",
+      description: "Write your case study",
+      type: "markdown",
+      hidden: ({ document }) => {
+        return showField(document, "brand");
+      },
+    },
   ],
+  preview: {
+    select: {
+      title: "title",
+      media: "thumbnail",
+      type: "type",
+    },
+    prepare: ({ title, media, type }) => {
+      return {
+        title,
+        subtitle: type[0],
+        media,
+      };
+    },
+  },
 };
