@@ -19,17 +19,39 @@ export default {
         layout: "tags",
       },
     },
-	{
-		name: "profile",
-		title: "Profile picture",
-		description: "Full name",
-		type: "image",
-	  },
+    {
+      name: "profile",
+      title: "Profile picture",
+      type: "image",
+    },
     {
       name: "bio",
       title: "Bio",
       description: "Tell me about yourself",
       type: "markdown",
+    },
+    {
+      name: "socials",
+      title: "Social media",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+			  { name: "name", title: "Platform name", type: "string" },
+            { name: "username", title: "Username", type: "string" },
+            {
+              name: "link",
+              title: "Link",
+              type: "url",
+              validation: (Rule) =>
+                Rule.uri({
+                  scheme: ["https"],
+                }),
+            },
+          ],
+        },
+      ],
     },
   ],
   preview: {
@@ -41,7 +63,7 @@ export default {
     prepare: ({ title, media, role }) => {
       return {
         title,
-        subtitle: role.join(', '),
+        subtitle: role.join(", "),
         media,
       };
     },
