@@ -25,8 +25,8 @@ export default {
       type: "string",
     },
     {
-      name: "description",
-      title: "Description",
+      name: "excerpt",
+      title: "Excerpt",
       type: "string",
       group: "seo",
     },
@@ -84,6 +84,19 @@ export default {
       },
     },
     {
+      name: "gallery",
+      title: "Gallery",
+      description: "Context images showing the progress",
+      type: "array",
+      of: [{ type: "image" }],
+    },
+    {
+      title: "Summery",
+      name: "summery",
+      description: "Write your process",
+      type: "markdown",
+    },
+    {
       name: "type",
       title: "Type",
       type: "array",
@@ -132,7 +145,7 @@ export default {
         const type = showField(document, "website");
         const openSource = !document?.open_source;
 
-        return type ? true : (openSource ? true : false);
+        return type ? true : openSource ? true : false;
       },
     },
     {
@@ -144,15 +157,6 @@ export default {
         return showField(document, "website");
       },
       validation: (Rule) => Rule.max(4).unique(),
-    },
-    {
-      title: "Development process",
-      name: "dev_process",
-      description: "Write your case study",
-      type: "markdown",
-      hidden: ({ document }) => {
-        return showField(document, "website");
-      },
     },
     // Graphic inputs
     {
@@ -174,30 +178,13 @@ export default {
       type: "array",
       of: [{ type: "string" }],
       options: {
-        layout: 'tags'
+        layout: "tags",
       },
       hidden: ({ document }) => {
         return showField(document, "graphic");
       },
     },
-    {
-      title: "Body",
-      name: "design_process",
-      description: "Write your case study",
-      type: "markdown",
-      hidden: ({ document }) => {
-        return showField(document, "graphic");
-      },
-    },
-    {
-      name: "gallery",
-      title: "Gallery",
-      type: "array",
-      of: [{ type: "image" }],
-      hidden: ({ document }) => {
-        return showField(document, "graphic");
-      },
-    },
+
     // Brand inputs
     {
       title: "Client link",
@@ -208,15 +195,6 @@ export default {
         Rule.uri({
           scheme: ["http", "https"],
         }),
-      hidden: ({ document }) => {
-        return showField(document, "brand");
-      },
-    },
-    {
-      title: "Body",
-      name: "brand_process",
-      description: "Write your case study",
-      type: "markdown",
       hidden: ({ document }) => {
         return showField(document, "brand");
       },
