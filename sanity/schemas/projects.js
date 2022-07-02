@@ -89,6 +89,9 @@ export default {
       description: "Context images showing the progress",
       type: "array",
       of: [{ type: "image" }],
+      options: {
+        layout: 'grid'
+      }
     },
     {
       title: "Summery",
