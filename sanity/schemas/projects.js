@@ -97,6 +97,12 @@ export default {
       type: "markdown",
     },
     {
+      name: "contributors",
+      title: "Contributors",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "contributors" }] }],
+    },
+    {
       name: "type",
       title: "Type",
       type: "array",
