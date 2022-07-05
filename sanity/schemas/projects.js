@@ -19,6 +19,18 @@ export default {
       group: "seo",
     },
     {
+      name: "slug",
+      title: "Slug",
+      type: "slug",
+      group: "seo",
+      options: {
+        source: "title",
+        maxLength: 200, // will be ignored if slugify is set
+        slugify: (input) =>
+          input.toLowerCase().replace(/\s+/g, "-").slice(0, 200),
+      },
+    },
+    {
       name: "client",
       title: "Client",
       description: "Name of client",
@@ -36,18 +48,6 @@ export default {
       type: "array",
       group: "seo",
       of: [{ type: "string" }],
-    },
-    {
-      name: "slug",
-      title: "Slug",
-      type: "slug",
-      group: "seo",
-      options: {
-        source: "title",
-        maxLength: 200, // will be ignored if slugify is set
-        slugify: (input) =>
-          input.toLowerCase().replace(/\s+/g, "-").slice(0, 200),
-      },
     },
     {
       name: "thumbnail",
@@ -90,13 +90,19 @@ export default {
       type: "array",
       of: [{ type: "image" }],
       options: {
-        layout: 'grid'
-      }
+        layout: "grid",
+      },
+    },
+    {
+      name: "case_study",
+      title: "Case study",
+      type: "reference",
+      to: [{ type: "case_studies" }],
     },
     {
       title: "Summery",
       name: "summery",
-      description: "Write your process",
+      description: "Explain what the project is about",
       type: "markdown",
     },
     {
@@ -105,6 +111,12 @@ export default {
       type: "array",
       of: [{ type: "reference", to: [{ type: "contributors" }] }],
     },
+    // {
+    //   name: 'public',
+    //   title: 'Public?',
+    //   description: 'show Item on portfolio website',
+    //   type: 'boolean',
+    // },
     {
       name: "type",
       title: "Type",
