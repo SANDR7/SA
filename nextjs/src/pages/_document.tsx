@@ -9,6 +9,7 @@ export default class _Document extends Document {
           {/* <link rel="manifest" href="/manifest.json" /> */}
           <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+          <meta name="robots" content="follow, index" />
 
           <meta name="description" content={meta.description} />
 
