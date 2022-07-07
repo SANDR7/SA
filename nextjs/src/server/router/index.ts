@@ -2,7 +2,7 @@
 import superjson from "superjson";
 import { createRouter } from "./context";
 
-import { SanityRouter } from "./sanity/projects";
+import { SanityRouter } from "./sanity/home";
 
 export const appRouter = createRouter()
   .transformer(superjson)

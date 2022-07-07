@@ -1,4 +1,5 @@
 import groq from "groq";
+import { Project } from "../../../types/sanity.project";
 import { sanityClient } from "../../../utils/sanity";
 import { createRouter } from "../context";
 
