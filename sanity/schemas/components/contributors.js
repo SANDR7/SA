@@ -31,6 +31,11 @@ export default {
       type: "markdown",
     },
     {
+      name: 'business_file',
+      title: 'Business File',
+      type: 'file',
+    },
+    {
       name: "socials",
       title: "Social media",
       type: "array",
