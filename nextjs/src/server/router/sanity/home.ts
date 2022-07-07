@@ -1,5 +1,4 @@
 import groq from "groq";
-import { Project } from "../../../types/sanity.project";
 import { sanityClient } from "../../../utils/sanity";
 import { createRouter } from "../context";
 
@@ -10,10 +9,11 @@ interface Project {
   image?: string;
 }
 
-export const SanityRouter = createRouter().query("projects", {
-  async resolve() {
-    const projects: Project[] = await sanityClient.fetch(
-      groq`*[_type == "projects"] | order(finished_date asc) {
+export const SanityRouter = createRouter()
+  .query("projects", {
+    async resolve() {
+      const projects: Project[] = await sanityClient.fetch(
+        groq`*[_type == "projects"][0..1] | order(finished_date asc) {
         _id,
         excerpt,
         'type': type[0],
@@ -23,8 +23,20 @@ export const SanityRouter = createRouter().query("projects", {
           'caption': thumbnail.caption
         }
       }`
-    );
+      );
 
-    return { projects };
-  },
-});
+      return { projects };
+    },
+  })
+  .query("CV", {
+    async resolve() {
+      const CV = await sanityClient.fetch(
+        groq`*[_type== 'contributors' && name match 'Sander van Ast'] {
+          name, 
+          'cv': business_file.asset->url
+        }`
+      );
+
+      return CV[0];
+    },
+  });
