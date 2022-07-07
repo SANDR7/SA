@@ -38,7 +38,7 @@ export default class _Document extends Document {
           <meta name="twitter:image" content={meta.favicon.dark} />
           <meta name="twitter:description" content={meta.description} />
         </Head>
-        <body>
+        <body className="dark:text-black-text text-white-text">
           <Main />
           <NextScript />
         </body>

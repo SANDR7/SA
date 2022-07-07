@@ -1,5 +1,6 @@
 export const meta = {
-  title: "Sander van Ast — Web Designer, Developer, Consumer",
+  title: "Sander van Ast — ",
+  name: 'Sander van Ast',
   slogan: "I Design the web for a more Enjoyable experience",
   description:
     "I’m Sander a enthousiast designer and web developer with experience in making things look good.",
@@ -12,8 +13,8 @@ export const meta = {
   ],
   domain: "https://sandervanast.website/",
   favicon: {
-    md: "/favicon.ico", // 128
-    dark: "media/SA dark.png", // 512
+    md: "./favicon.ico", // 128
+    dark: "./media/SA dark.png", // 512
   },
   colors: {
     theme: "#ff7b47",
@@ -23,7 +24,7 @@ export const meta = {
   thumbnail: {
     width: "1820",
     height: "904",
-    banner: "media/banner.png",
+    banner: "./media/banner.png",
     twitter: "etc.",
   },
   contact: {
