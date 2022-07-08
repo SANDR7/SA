@@ -18,7 +18,7 @@ const Home: NextPage = () => {
 
   return (
     <PageContainer title={meta.title + "Web Designer, Developer, Consumer"}>
-      <h1>{meta.slogan}</h1>
+      <h2>{meta.slogan}</h2>
 
       <div>
         {projects &&

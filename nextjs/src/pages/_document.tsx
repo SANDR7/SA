@@ -4,7 +4,7 @@ import { meta } from "../utils/meta";
 export default class _Document extends Document {
   render() {
     return (
-      <Html>
+      <Html lang="en">
         <Head>
           {/* <link rel="manifest" href="/manifest.json" /> */}
           <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
