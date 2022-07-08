@@ -49,7 +49,7 @@ const Menu = () => {
       <ul className="flex items-center">
         {routes &&
           routes.map((route, idx) => (
-            <li key={idx} className="tablet:text-[20px] laptop:text-[24px]">
+            <li key={idx} className="text-[16px] tablet:text-[20px] laptop:text-[24px]">
               <NavItem href={route.link} text={route.name} />
             </li>
           ))}

@@ -24,6 +24,7 @@ const Avatar: React.FC<Avatar> = (props) => {
           <Image
             src={portrait}
             alt="Sander portrait"
+            priority
             width={204}
             height={204}
           />
@@ -35,7 +36,13 @@ const Avatar: React.FC<Avatar> = (props) => {
           target="_blank"
           rel="noreferrer"
         >
-          <Image src={avatar} alt="Sander avatar" width={77} height={77} />
+          <Image
+            src={avatar}
+            alt="Sander avatar"
+            priority
+            width={77}
+            height={77}
+          />
         </a>
       </div>
     </div>
