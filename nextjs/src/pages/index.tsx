@@ -27,7 +27,12 @@ const Home: NextPage = () => {
               <h3>{project.title}</h3>
               <p>{project.excerpt}</p>
               <b>{project.type}</b>
-              <Image src={project.thumbnail.image} width={1200} height={800} />
+              <Image
+                src={project.thumbnail.image}
+                alt={project.thumbnail.caption}
+                width={1200}
+                height={800}
+              />
             </div>
           ))}
       </div>

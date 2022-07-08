@@ -33,7 +33,7 @@ export const SanityRouter = createRouter()
       const CV = await sanityClient.fetch(
         groq`*[_type== 'contributors' && name match 'Sander van Ast'] {
           name, 
-          'cv': business_file.asset->url
+          'file': business_file.asset->url
         }`
       );
 
