@@ -7,6 +7,7 @@ import { createSSGHelpers } from "@trpc/react/ssg";
 import Image from "next/image";
 import PageContainer from "../components/layout";
 import { meta } from "../utils/meta";
+import parse from "html-react-parser";
 
 const Home: NextPage = () => {
   const {
@@ -18,8 +19,19 @@ const Home: NextPage = () => {
 
   return (
     <PageContainer title={meta.title + "Web Designer, Developer, Consumer"}>
-      <h2>{meta.slogan}</h2>
+      <section className="relative">
+        <span className="font-bold desktop:text-[144px] text-white-600 dark:text-black-600">
+          Hello,{" "}
+        </span>
+        <span className="relative left-[10rem] top-[-6rem]">
+          <h2 className="font-bold leading-tight desktop:text-[72px]">
+            {parse(meta.slogan)}
+          </h2>
+          <p className="w-4/12">{meta.description}</p>
+        </span>
+      </section>
 
+      <hr />
       <div>
         {projects &&
           projects.map((project: any) => (
@@ -58,3 +70,4 @@ export async function getStaticProps(context: GetStaticPropsContext) {
 }
 
 export default Home;
+
