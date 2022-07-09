@@ -28,7 +28,7 @@ const Home: NextPage = () => {
           desktop:text-[144px]
         "
         >
-          Morning,{" "}
+          Hi there,{" "}
         </span>
         <span
           className="relative 
@@ -51,7 +51,7 @@ const Home: NextPage = () => {
             leading-9
           text-[32px]
           tablet:leading-[.9]
-          tablet:text-[42px]
+          tablet:text-[40px]
 
           laptop:text-[56px]
           laptop:leading-[1]
