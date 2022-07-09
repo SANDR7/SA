@@ -1,7 +1,8 @@
 export const meta = {
   title: "Sander van Ast — ",
-  name: 'Sander van Ast',
-  slogan: "I Design the web for a more Enjoyable experience",
+  name: "Sander van Ast",
+  slogan:
+    "I <span class='text-green'>Design</span> the web for a more Enjoyable experience",
   description:
     "I’m Sander a enthousiast designer and web developer with experience in making things look good.",
   keywords: [
