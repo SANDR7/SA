@@ -4,10 +4,10 @@ import { appRouter } from "../server/router";
 import { trpc } from "../utils/trpc";
 
 import { createSSGHelpers } from "@trpc/react/ssg";
+import parse from "html-react-parser";
 import Image from "next/image";
 import PageContainer from "../components/layout";
 import { meta } from "../utils/meta";
-import parse from "html-react-parser";
 
 const Home: NextPage = () => {
   const {
@@ -20,14 +20,52 @@ const Home: NextPage = () => {
   return (
     <PageContainer title={meta.title + "Web Designer, Developer, Consumer"}>
       <section className="relative">
-        <span className="font-bold desktop:text-[144px] text-white-600 dark:text-black-600">
-          Hello,{" "}
+        <span
+          className="font-bold text-white-600 dark:text-black-600
+          text-[48px]
+          tablet:text-[62px]
+           laptop:text-[92px]
+          desktop:text-[144px]
+        "
+        >
+          Morning,{" "}
         </span>
-        <span className="relative left-[10rem] top-[-6rem]">
-          <h2 className="font-bold leading-tight desktop:text-[72px]">
+        <span
+          className="relative 
+      
+          left-[0.4rem]
+          top-[-1.8rem]
+
+          tablet:left-[.8rem]
+          tablet:top-[-2.2rem]
+
+          laptop:left-[4rem]
+          laptop:top-[-3.2rem]
+
+        desktop:left-[10rem]
+        desktop:top-[-6rem]
+        "
+        >
+          <h2
+            className="font-bold 
+            leading-9
+          text-[32px]
+          tablet:leading-[.9]
+          tablet:text-[42px]
+
+          laptop:text-[56px]
+          laptop:leading-[1]
+
+           desktop:text-[72px]
+           desktop:w-auto
+           desktop:leading-tight
+           "
+          >
             {parse(meta.slogan)}
           </h2>
-          <p className="w-4/12">{meta.description}</p>
+          <p className="tablet:w-8/12 desktop:w-4/12 opacity-70 mt-4">
+            {meta.description}
+          </p>
         </span>
       </section>
 
@@ -39,6 +77,7 @@ const Home: NextPage = () => {
               <h3>{project.title}</h3>
               <p>{project.excerpt}</p>
               <b>{project.type}</b>
+              <p>{project.production_link.find((link: string) => link)}</p>
               <Image
                 src={project.thumbnail.image}
                 alt={project.thumbnail.caption}
@@ -70,4 +109,3 @@ export async function getStaticProps(context: GetStaticPropsContext) {
 }
 
 export default Home;
-
