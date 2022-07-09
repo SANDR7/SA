@@ -42,18 +42,25 @@ const Menu = () => {
       name: "Projects",
       link: "/projects",
     },
+    {
+      name: "About",
+      link: "/about",
+    },
   ];
 
   return (
     <nav className="flex justify-between">
       <ul className="flex items-center">
         {routes &&
-          routes.map((route, idx) => (
-            <li key={idx} className="text-[16px] tablet:text-[20px] laptop:text-[24px]">
+          routes.slice(0, 3).map((route, idx) => (
+            <li
+              key={idx}
+              className="text-[16px] tablet:text-[20px] laptop:text-[24px]"
+            >
               <NavItem href={route.link} text={route.name} />
             </li>
           ))}
-        <li className="tablet:text-[20px] laptop:text-[24px]">
+        <li className="tablet:text-[20px] laptop:text-[24px] hidden tablet:block">
           <button
             onClick={() => window.open(data.file, "_blank")}
             title={"Download CV"}
