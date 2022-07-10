@@ -50,7 +50,7 @@ const Menu = () => {
 
   return (
     <nav className="flex justify-between">
-      <ul className="flex items-center">
+      <ul className="flex items-center tablet:items-start">
         {routes &&
           routes.slice(0, 3).map((route, idx) => (
             <li
@@ -61,13 +61,13 @@ const Menu = () => {
             </li>
           ))}
         <li className="tablet:text-[20px] laptop:text-[24px] hidden tablet:block">
-          <button
+          <a
             onClick={() => window.open(data.file, "_blank")}
             title={"Download CV"}
-            className="rounded text-red desktop:p-3 p-2 hover:bg-white"
+            className="rounded text-red desktop:p-3 p-2 hover:bg-white dark:hover:bg-black cursor-pointer"
           >
             CV
-          </button>
+          </a>
         </li>
       </ul>
       <Avatar portrait="/web/profile.png" avatar="/web/avatar.png" />
