@@ -106,6 +106,12 @@ export default {
       type: "markdown",
     },
     {
+      name: "likes",
+      title: "Likes",
+      type: "number",
+      initialValue: 0,
+    },
+    {
       name: "contributors",
       title: "Contributors",
       type: "array",
@@ -177,7 +183,7 @@ export default {
       hidden: ({ document }) => {
         return showField(document, "website");
       },
-      validation: (Rule) => Rule.max(4).unique(),
+      validation: (Rule) => Rule.max(6).unique(),
     },
     // Graphic inputs
     {
@@ -219,6 +225,12 @@ export default {
       hidden: ({ document }) => {
         return showField(document, "brand");
       },
+    },
+    {
+      name: "comments",
+      title: "Comments",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "comments" }] }],
     },
   ],
   preview: {

@@ -10,6 +10,7 @@ import skills from "./components/skills";
 import projects from "./projects";
 import contributors from "./components/contributors";
 import case_studies from "./components/case_studies";
+import comments from "./components/comments";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -21,9 +22,9 @@ export default createSchema({
     /* Your types here! */
     projects,
     case_studies,
+    comments,
     blogs,
     skills,
     contributors,
-    about,
   ]),
 });
