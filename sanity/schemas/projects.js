@@ -40,6 +40,7 @@ export default {
       name: "excerpt",
       title: "Excerpt",
       type: "string",
+      validation: (Rule) => Rule.min(10).max(200),
       group: "seo",
     },
     {
