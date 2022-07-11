@@ -4,14 +4,14 @@ export declare namespace Sanity {
   namespace Home {
     type Projects = {
       _id: string;
-      excerpt: string | null;
-      production_link: [string | null, string | null, string | null];
+      excerpt: string | undefined;
+      production_link: [string | undefined, string | undefined, string | undefined];
       thumbnail: {
-        caption: string;
+        caption: string | undefined;
         image: string;
       };
-      title: string | null;
-      type: string | null;
+      title: string | undefined;
+      type: string | undefined;
     }[];
 
     /**

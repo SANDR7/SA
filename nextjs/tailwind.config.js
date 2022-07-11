@@ -26,6 +26,11 @@ module.exports = {
         800: "#979797",
       },
     },
+    extend: {
+      aspectRatio: {
+        "4/3": "4 / 3",
+      },
+    },
     screens: {
       mobile: "320px",
       // => @media (min-width: 640px) { ... }

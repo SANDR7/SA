@@ -7,7 +7,7 @@ export const SanityRouter = createRouter()
   .query("projects", {
     async resolve() {
       const projects = await sanityClient.fetch<Sanity.Home.Projects>(
-        groq`*[_type == "projects"][0..1] | order(finished_date desc) {
+        groq`*[_type == "projects"] | order(finished_date desc) {
         _id,
         excerpt,
         'type': type[0],
@@ -17,7 +17,7 @@ export const SanityRouter = createRouter()
           'image': thumbnail.asset->url,
           'caption': thumbnail.caption
         }
-      }`
+      }[0..1] `
       );
 
       return projects;

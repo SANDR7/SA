@@ -1,15 +1,17 @@
-import type { GetStaticPropsContext, NextPage } from "next";
-import superjson from "superjson";
-import { appRouter } from "../server/router";
-import { trpc } from "../utils/trpc";
-
 import { createSSGHelpers } from "@trpc/react/ssg";
 import parse from "html-react-parser";
+import type { GetStaticPropsContext, NextPage } from "next";
 import Image from "next/image";
 import { UseQueryResult } from "react-query";
+import superjson from "superjson";
+
 import PageContainer from "../components/layout";
+import Anchor from "../components/ui/section/anchor";
+import SectionHeader from "../components/ui/section/header";
+import { appRouter } from "../server/router";
 import { Sanity } from "../types/sanity/home.queries";
 import { meta } from "../utils/meta";
+import { trpc } from "../utils/trpc";
 
 const Home: NextPage = () => {
   const { data: projects, isLoading }: UseQueryResult<Sanity.Home.Projects> =
@@ -17,7 +19,7 @@ const Home: NextPage = () => {
 
   return (
     <PageContainer title={meta.title + "Web Designer, Developer, Consumer"}>
-      <section className="relative">
+      <div className="relative">
         <span
           className="font-bold text-white-600 dark:text-black-600
           text-[48px]
@@ -65,28 +67,57 @@ const Home: NextPage = () => {
             {meta.description}
           </p>
         </span>
-      </section>
+      </div>
 
-      <hr />
-      <div>
+      <section about="projects">
+        <SectionHeader title="Recent projects" />
         {!!projects &&
           projects?.map((project) => (
-            <div key={project._id}>
-              <h3>{project.title}</h3>
-              <p>{project.excerpt}</p>
-              <b>{project.type}</b>
-              <p>
-                <div>{project.production_link.find((link) => link)}</div>
-              </p>
-              <Image
-                src={project.thumbnail.image}
-                alt={project.thumbnail.caption}
-                width={1200}
-                height={800}
-              />
-            </div>
+            <section
+              about={project.title}
+              key={project._id}
+              className="my-[50px] relative laptop:flex"
+            >
+              <div className="desktop:w-9/12 laptop:w-10/12">
+                <h4 className="desktop:h-[154px] font-medium flex items-stretch leading-[1.1] ">
+                  <span className="desktop:text-[76px] self-end">
+                    {project.title}
+                    <span className="text-orange">.</span>
+                  </span>
+                </h4>
+                <div className="flex flex-col desktop:my-[10px] desktop:pl-[40px] desktop:w-10/12 desktop:border-l desktop:ml-[65px]">
+                  <p className="">{project.excerpt}</p>
+                  <strong className="uppercase desktop:mt-[80px]">
+                    {project.type === "graphic"
+                      ? "graphic design"
+                      : project.type}
+                  </strong>
+                  <Anchor
+                    name={
+                      project.type === "graphic"
+                        ? "source"
+                        : project.type === "brand"
+                        ? "website"
+                        : "live demo"
+                    }
+                    href={
+                      project.production_link.find((link) => link) as string
+                    }
+                    newTab
+                  />
+                </div>
+              </div>
+                <Image
+                  src={project.thumbnail.image}
+                  alt={project.thumbnail.caption}
+                  width={1200}
+                  height={800}
+                  className="w-max aspect-4/3"
+                  objectFit="cover"
+                />
+            </section>
           ))}
-      </div>
+      </section>
     </PageContainer>
   );
 };
