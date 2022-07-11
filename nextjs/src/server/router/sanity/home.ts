@@ -1,18 +1,12 @@
 import groq from "groq";
+import { Sanity } from "../../../types/sanity/home.queries";
 import { sanityClient } from "../../../utils/sanity";
 import { createRouter } from "../context";
-
-interface Project {
-  title: string;
-  excerpt?: string;
-  _id: string;
-  image?: string;
-}
 
 export const SanityRouter = createRouter()
   .query("projects", {
     async resolve() {
-      const projects: Project[] = await sanityClient.fetch(
+      const projects = await sanityClient.fetch<Sanity.Home.Projects>(
         groq`*[_type == "projects"][0..1] | order(finished_date desc) {
         _id,
         excerpt,
@@ -26,12 +20,12 @@ export const SanityRouter = createRouter()
       }`
       );
 
-      return { projects };
+      return projects;
     },
   })
   .query("CV", {
     async resolve() {
-      const CV = await sanityClient.fetch(
+      const CV = await sanityClient.fetch<Sanity.Home.CV>(
         groq`*[_type== 'contributors' && name match 'Sander van Ast'] {
           name, 
           'file': business_file.asset->url

@@ -6,16 +6,14 @@ import { trpc } from "../utils/trpc";
 import { createSSGHelpers } from "@trpc/react/ssg";
 import parse from "html-react-parser";
 import Image from "next/image";
+import { UseQueryResult } from "react-query";
 import PageContainer from "../components/layout";
+import { Sanity } from "../types/sanity/home.queries";
 import { meta } from "../utils/meta";
 
 const Home: NextPage = () => {
-  const {
-    data: { projects },
-    isLoading,
-  }: any = trpc.useQuery(["sanity.projects"]);
-
-  // console.log(projects);
+  const { data: projects, isLoading }: UseQueryResult<Sanity.Home.Projects> =
+    trpc.useQuery(["sanity.projects"]);
 
   return (
     <PageContainer title={meta.title + "Web Designer, Developer, Consumer"}>
@@ -71,13 +69,15 @@ const Home: NextPage = () => {
 
       <hr />
       <div>
-        {projects &&
-          projects.map((project: any) => (
+        {!!projects &&
+          projects?.map((project) => (
             <div key={project._id}>
               <h3>{project.title}</h3>
               <p>{project.excerpt}</p>
               <b>{project.type}</b>
-              <p>{project.production_link.find((link: string) => link)}</p>
+              <p>
+                <div>{project.production_link.find((link) => link)}</div>
+              </p>
               <Image
                 src={project.thumbnail.image}
                 alt={project.thumbnail.caption}

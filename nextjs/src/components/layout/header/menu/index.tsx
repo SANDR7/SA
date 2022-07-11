@@ -62,7 +62,7 @@ const Menu = () => {
           ))}
         <li className="tablet:text-[20px] laptop:text-[24px] hidden tablet:block">
           <a
-            onClick={() => window.open(data.file, "_blank")}
+            onClick={() => window.open(data?.file, "_blank")}
             title={"Download CV"}
             className="rounded text-red desktop:p-3 p-2 hover:bg-white dark:hover:bg-black cursor-pointer"
           >
