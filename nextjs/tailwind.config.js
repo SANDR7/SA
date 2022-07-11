@@ -11,6 +11,10 @@ module.exports = {
       red: "#C94040",
       orange: "#FF7B47",
       green: "#38C4B2",
+      section: {
+        light: "#faf1e8",
+        dark: "#1c1c1c",
+      },
       white: {
         text: "#2E2E2E",
         DEFAULT: "#ffffff",
