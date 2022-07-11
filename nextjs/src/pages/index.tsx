@@ -22,10 +22,13 @@ const Home: NextPage = () => {
       <div className="relative">
         <span
           className="font-bold text-white-600 dark:text-black-600
-          text-[48px]
-          tablet:text-[62px]
-           laptop:text-[92px]
-          desktop:text-[144px]
+            text-[48px]
+
+            tablet:text-[62px]
+
+            laptop:text-[92px]
+
+            desktop:text-[144px]
         "
         >
           Hi there,{" "}
@@ -33,32 +36,24 @@ const Home: NextPage = () => {
         <span
           className="relative 
       
-          left-[0.4rem]
-          top-[-1.8rem]
+          left-[0.4rem] top-[-1.8rem]
 
-          tablet:left-[.8rem]
-          tablet:top-[-2.2rem]
+          tablet:left-[.8rem] tablet:top-[-2.2rem]
 
-          laptop:left-[4rem]
-          laptop:top-[-3.2rem]
+          laptop:left-[4rem] laptop:top-[-3.2rem]
 
-        desktop:left-[10rem]
-        desktop:top-[-6rem]
+          desktop:left-[10rem] desktop:top-[-6rem]
         "
         >
           <h2
             className="font-bold 
-            leading-9
-          text-[32px]
-          tablet:leading-[.9]
-          tablet:text-[40px]
+            leading-9 text-[32px]
 
-          laptop:text-[56px]
-          laptop:leading-[1]
+            tablet:leading-[.9] tablet:text-[40px]
 
-           desktop:text-[72px]
-           desktop:w-auto
-           desktop:leading-tight
+            laptop:text-[56px] laptop:leading-[1]
+
+            desktop:text-[76px] desktop:w-auto desktop:leading-tight
            "
           >
             {parse(meta.slogan)}
@@ -76,17 +71,19 @@ const Home: NextPage = () => {
             <section
               about={project.title}
               key={project._id}
-              className="my-[50px] relative laptop:flex"
+              className="my-[60px] relative laptop:flex"
             >
               <div className="desktop:w-9/12 laptop:w-10/12">
                 <h4 className="desktop:h-[154px] font-medium flex items-stretch leading-[1.1] ">
                   <span className="desktop:text-[76px] self-end">
                     {project.title}
-                    <span className="text-orange">.</span>
+                    <span className="text-orange font-bold">.</span>
                   </span>
                 </h4>
                 <div className="flex flex-col desktop:my-[10px] desktop:pl-[40px] desktop:w-10/12 desktop:border-l desktop:ml-[65px]">
-                  <p className="">{project.excerpt}</p>
+                  <p className="desktop:min-h-[120px] desktop:text-[18px]">
+                    {project.excerpt}
+                  </p>
                   <strong className="uppercase desktop:mt-[80px]">
                     {project.type === "graphic"
                       ? "graphic design"
@@ -107,14 +104,14 @@ const Home: NextPage = () => {
                   />
                 </div>
               </div>
-                <Image
-                  src={project.thumbnail.image}
-                  alt={project.thumbnail.caption}
-                  width={1200}
-                  height={800}
-                  className="w-max aspect-4/3"
-                  objectFit="cover"
-                />
+              <Image
+                src={project.thumbnail.image}
+                alt={project.thumbnail.caption}
+                width={1200}
+                height={800}
+                className="w-max aspect-4/3 saturate-0"
+                objectFit="cover"
+              />
             </section>
           ))}
       </section>
