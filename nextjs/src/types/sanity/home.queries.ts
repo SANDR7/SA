@@ -12,7 +12,7 @@ export declare namespace Sanity {
       };
       title: string | undefined;
       type: string | undefined;
-    }[];
+    };
 
     /**
      * A keyed type of all the codegen'ed queries. This type is used for

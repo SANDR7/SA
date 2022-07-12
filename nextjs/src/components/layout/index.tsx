@@ -27,8 +27,8 @@ const PageContainer: React.FC<PageProps> = (props) => {
         </div>
       </header>
 
-      <main className="bg-white dark:bg-black relative z-20">
-        <div className="maxWith py-[3rem] ">{children}</div>
+      <main className="bg-white dark:bg-black relative z-20 ">
+        <div className="maxWith py-[3rem] overflow-hidden">{children}</div>
       </main>
     </>
   );

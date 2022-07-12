@@ -36,8 +36,9 @@ module.exports = {
       },
     },
     screens: {
+      tiny: "100px",
       mobile: "320px",
-      // => @media (min-width: 640px) { ... }
+      // => @media (min-width: 320px) { ... }
       tablet: "640px",
       // => @media (min-width: 640px) { ... }
 

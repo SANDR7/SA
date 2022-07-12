@@ -2,6 +2,9 @@ const HeaderTitle = ({ name }: { name: string }) => {
   return (
     <h1
       className="absolute leading-none 
+      tiny:hidden
+      mobile:block
+      
       overflow-hidden opacity-[80%]
       font-medium text-orange
 

@@ -11,7 +11,7 @@ interface Avatar {
 const Avatar: React.FC<Avatar> = (props) => {
   const { avatar, portrait, avatar_social_link, portrait_social_link } = props;
   return (
-    <div className="relative max-w-[63px] tablet:max-w-[95px] desktop:max-w-[204px]">
+    <div className="relative tiny:hidden mobile:block max-w-[63px] tablet:max-w-[95px] desktop:max-w-[204px]">
       <div>
         <a
           href={
@@ -27,6 +27,7 @@ const Avatar: React.FC<Avatar> = (props) => {
             priority
             width={204}
             height={204}
+            objectFit="contain"
           />
         </a>
       </div>
@@ -42,6 +43,8 @@ const Avatar: React.FC<Avatar> = (props) => {
             priority
             width={77}
             height={77}
+            objectFit="contain"
+
           />
         </a>
       </div>
