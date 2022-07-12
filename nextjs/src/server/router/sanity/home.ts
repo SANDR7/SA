@@ -9,6 +9,7 @@ export const SanityRouter = createRouter()
       const projects = await sanityClient.fetch<Sanity.Home.Projects>(
         groq`*[_type == "projects"] | order(finished_date desc)[0..1] {
         _id,
+        'slug': slug.current,
         excerpt,
         'type': type[0],
         title,

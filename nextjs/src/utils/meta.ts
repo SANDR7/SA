@@ -10,6 +10,8 @@ export const meta = {
     "Resume",
     "Sander van Ast",
     "Web designer",
+    "Neat",
+    "Neat styled websites",
     "Web developer",
   ],
   domain: "https://sandervanast.website/",

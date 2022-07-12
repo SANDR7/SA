@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { trpc } from "../../../../utils/trpc";
 import Avatar from "../../../ui/header/avatar";
+import Anchor from "../../../ui/section/anchor";
 
 interface NavItemProps {
   href: string;
@@ -60,14 +61,13 @@ const Menu = () => {
               <NavItem href={route.link} text={route.name} />
             </li>
           ))}
-        <li className="tablet:text-[20px] laptop:text-[24px] hidden tablet:block">
-          <a
-            onClick={() => window.open(data?.file, "_blank")}
-            title={"Download CV"}
-            className="rounded text-red desktop:p-3 p-2 hover:bg-white dark:hover:bg-black cursor-pointer"
-          >
-            CV
-          </a>
+        <li className="tablet:text-[20px] laptop:text-[24px] tiny:block mobile:hidden tablet:block">
+          <Anchor
+            href={data?.file as string}
+            name="CV"
+            className="rounded text-red desktop:p-3 p-2 hover:bg-white dark:hover:bg-black cursor-pointer hover:!no-underline"
+            newTab
+          />
         </li>
       </ul>
       <Avatar portrait="/web/profile.png" avatar="/web/avatar.png" />

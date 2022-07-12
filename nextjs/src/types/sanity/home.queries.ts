@@ -4,6 +4,7 @@ export declare namespace Sanity {
   namespace Home {
     type Projects = {
       _id: string;
+      slug: string | undefined;
       excerpt: string | undefined;
       production_link: [string | undefined, string | undefined, string | undefined];
       thumbnail: {

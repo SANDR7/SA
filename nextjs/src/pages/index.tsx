@@ -5,6 +5,8 @@ import { UseQueryResult } from "react-query";
 import superjson from "superjson";
 
 import PageContainer from "../components/layout";
+import Anchor from "../components/ui/section/anchor";
+import Callout from "../components/ui/section/Callout";
 import SectionHeader from "../components/ui/section/header";
 import ProjectCard from "../components/ui/section/project/card";
 import { appRouter } from "../server/router";
@@ -18,48 +20,9 @@ const Home: NextPage = () => {
 
   return (
     <PageContainer title={meta.title + "Web Designer, Developer & Consumer"}>
-      <span
-        className="font-bold text-white-600 dark:text-black-600
-            text-[48px]
-
-            tablet:text-[62px]
-
-            laptop:text-[92px]
-
-            desktop:text-[144px]
-        "
-      >
-        Hi there,{" "}
-      </span>
-      <span
-        className="relative 
-      
-          left-[0rem] top-[-1.8rem]
-
-          tablet:left-[.8rem] tablet:top-[-2.2rem]
-
-          laptop:left-[1rem] laptop:top-[-3.2rem]
-
-          desktop:left-[6rem] desktop:top-[-6rem]
-        "
-      >
-        <h2
-          className="font-bold 
-            leading-9 text-[28px]
-
-            tablet:leading-[.9] tablet:text-[40px]
-
-            laptop:text-[56px] laptop:leading-[1]
-
-            desktop:text-[76px] desktop:w-auto desktop:leading-none
-           "
-        >
-          {parse(meta.slogan)}
-        </h2>
-        <p className="tablet:w-8/12 desktop:w-4/12 opacity-70 mt-4">
-          {meta.description}
-        </p>
-      </span>
+      <Callout subTitle="Hi There" description={meta.description}>
+        {parse(meta.slogan)}
+      </Callout>
 
       <section about="projects">
         <SectionHeader title="Recent projects" />
@@ -73,6 +36,18 @@ const Home: NextPage = () => {
               <ProjectCard {...project} />
             </section>
           ))}
+      </section>
+      <section about="contact me for neat project ideas">
+        <SectionHeader title="Contact me" />
+
+        <Callout subTitle="Contact">
+          <Anchor
+            name="media@sandervanast.com"
+            className="!lowercase"
+            href="mailto:media@sandervanast.com"
+            newTab
+          />
+        </Callout>
       </section>
     </PageContainer>
   );
