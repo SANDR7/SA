@@ -55,7 +55,17 @@ export const ProjectRouter = createRouter()
         `*[_type == 'projects' && slug.current == '${input.slug}'][0] {
         _id,
         'slug': slug.current,
-        title
+        title,
+        likes,
+        excerpt,
+        keywords,
+        'thumbnail': {
+          'image': thumbnail.asset->url,
+          'caption': thumbnail.caption
+        },
+        case_study,
+        'contributors': contributors[]->name,
+        'stack': used_tech[]->{ name, type[0] },
       }`
       );
 

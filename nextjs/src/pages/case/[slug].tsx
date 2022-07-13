@@ -1,7 +1,7 @@
 import { createSSGHelpers } from "@trpc/react/ssg";
 import groq from "groq";
 import { GetServerSidePropsContext, GetStaticPaths, NextPage } from "next";
-import { useRouter } from "next/router";
+import { UseQueryResult } from "react-query";
 import superjson from "superjson";
 
 import CaseContainer from "../../components/layout/case";
@@ -10,25 +10,24 @@ import { appRouter } from "../../server/router";
 import { Sanity } from "../../types/sanity/projects.queries";
 import { trpc } from "../../utils/trpc";
 
-const Case: NextPage<Sanity.Projects.Slug> = ({ slug }) => {
-  const { asPath } = useRouter();
-  const { data: project, isLoading } = trpc.useQuery([
-    "projects.by-slug",
-    { slug },
-  ]);
-
-  console.log(project);
-  
+const Case: NextPage<{ slug: string }> = ({ slug }) => {
+  const { data: project }: UseQueryResult<Sanity.Projects.Case> = trpc.useQuery(
+    ["projects.by-slug", { slug }]
+  );
 
   return (
-    <CaseContainer title={project?.title as string} description="test">
+    <CaseContainer
+      title={project?.title as string}
+      description={project?.excerpt as string}
+      keywords={project?.keywords as string[]}
+    >
       Case {project?.title}
     </CaseContainer>
   );
 };
 
 export async function getStaticProps(
-  context: GetServerSidePropsContext<Sanity.Projects.Slug>
+  context: GetServerSidePropsContext<{ slug: string }>
 ) {
   const ssg = createSSGHelpers({
     router: appRouter,
@@ -37,12 +36,10 @@ export async function getStaticProps(
   });
   const slug = context.params?.slug as string;
 
-  // Prefetch `post.byId`
   await ssg.fetchQuery("projects.by-slug", {
     slug,
   });
 
-  // Make sure to return { props: { trpcState: ssg.dehydrate() } }
   return {
     props: {
       trpcState: ssg.dehydrate(),
@@ -53,13 +50,12 @@ export async function getStaticProps(
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const projects = await sanityClient.fetch<Sanity.Projects.Slug[]>(
+  const projects = await sanityClient.fetch<Sanity.Projects.Case[]>(
     groq`*[_type == 'projects'] {'slug': slug.current}`
   );
 
-
   return {
-    paths: projects.map((project: any) => ({
+    paths: projects.map((project: {slug: string | undefined}) => ({
       params: {
         slug: project.slug,
       },

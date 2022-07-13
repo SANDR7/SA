@@ -19,7 +19,7 @@ const SectionHeader = dynamic(() => import("../components/ui/section/header"));
 const Anchor = dynamic(() => import("../components/ui/section/anchor"));
 
 const Home: NextPage = () => {
-  const { data: projects, isLoading }: UseQueryResult<Sanity.Projects.Home[]> =
+  const { data: projects }: UseQueryResult<Sanity.Projects.Home[]> =
     trpc.useQuery(["projects.home"]);
 
   return (
@@ -65,7 +65,7 @@ export async function getStaticProps(context: GetStaticPropsContext) {
     ctx: {} as any,
     transformer: superjson, // optional - adds superjson serialization
   });
-  // prefetch from server
+  
   await ssg.fetchQuery("projects.home");
 
   return {

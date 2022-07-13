@@ -47,7 +47,7 @@ const ProjectCard: React.FC<Sanity.Projects.Home> = ({
           >
             {excerpt}
           </p>
-          <strong className="uppercase text-orange desktop:mt-[80px]">
+          <strong className="uppercase text-white-800 desktop:mt-[80px]">
             {type === "graphic" ? "graphic design" : type}
           </strong>
           <Anchor

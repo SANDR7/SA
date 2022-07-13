@@ -1,5 +1,5 @@
 import { createSSGHelpers } from "@trpc/react/ssg";
-import type { GetStaticPropsContext } from "next";
+import type { GetStaticPropsContext, NextPage } from "next";
 import dynamic from "next/dynamic";
 import { UseQueryResult } from "react-query";
 import superjson from "superjson";
@@ -15,8 +15,8 @@ const ProjectCard = dynamic(
 );
 const SectionHeader = dynamic(() => import("../components/ui/section/header"));
 
-const Projects = () => {
-  const { data: projects, isLoading }: UseQueryResult<Sanity.Projects.Home[]> =
+const Projects: NextPage = () => {
+  const { data: projects }: UseQueryResult<Sanity.Projects.Home[]> =
     trpc.useQuery(["projects.all"]);
   return (
     <PageContainer title={meta.title + "Projects"}>
