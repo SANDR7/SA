@@ -47,19 +47,13 @@ const ProjectCard: React.FC<Sanity.Projects.Home> = ({
           >
             {excerpt}
           </p>
-          <strong className="uppercase desktop:mt-[80px]">
+          <strong className="uppercase text-orange desktop:mt-[80px]">
             {type === "graphic" ? "graphic design" : type}
           </strong>
           <Anchor
-            name={
-              type === "graphic"
-                ? "source"
-                : type === "brand"
-                ? "website"
-                : "live demo"
-            }
-            href={production_link.find((link) => link) as string}
-            newTab
+            name="Read more"
+            className="w-max"
+            href={`case/${slug}`}
           />
         </div>
       </div>

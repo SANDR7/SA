@@ -1,5 +1,5 @@
 import React from 'react'
-import PageContainer from '../components/layout'
+import PageContainer from '../components/layout/main'
 import { meta } from '../data/meta'
 
 const About = () => {

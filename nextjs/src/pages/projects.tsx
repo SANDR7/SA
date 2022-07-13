@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import { UseQueryResult } from "react-query";
 import superjson from "superjson";
 
-import PageContainer from "../components/layout";
+import PageContainer from "../components/layout/main";
 import { meta } from "../data/meta";
 import { appRouter } from "../server/router";
 import { Sanity } from "../types/sanity/home.queries";

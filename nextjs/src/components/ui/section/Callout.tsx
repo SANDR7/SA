@@ -2,7 +2,7 @@ import React from "react";
 
 const Callout: React.FC<{
   subTitle: string;
-  description?: string;
+  description?: string | React.ReactNode;
   children: React.ReactNode;
 }> = ({ subTitle, description, children }) => {
   return (
