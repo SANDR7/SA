@@ -1,13 +1,12 @@
 ## Begin with:
 
-for plasmic
+for next.js
 ```bash
 cd nextjs/
-npx plasmic watch 
-# or
-npx plasmic sync
+# then
+npm run dev
 ```
-- [Plasmic Documentation](https://docs.plasmic.app/learn/)
+- [T3 Stack](https://create.t3.gg/)
 
 ---
 
