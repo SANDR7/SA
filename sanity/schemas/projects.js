@@ -118,12 +118,12 @@ export default {
       type: "array",
       of: [{ type: "reference", to: [{ type: "contributors" }] }],
     },
-    // {
-    //   name: 'public',
-    //   title: 'Public?',
-    //   description: 'show Item on portfolio website',
-    //   type: 'boolean',
-    // },
+    {
+      name: 'highlighted',
+      title: 'highlighted?',
+      description: 'show project on the homepage',
+      type: 'boolean',
+    },
     {
       name: "type",
       title: "Type",
