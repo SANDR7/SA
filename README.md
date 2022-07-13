@@ -4,6 +4,8 @@ for next.js
 ```bash
 cd nextjs/
 # then
+npm install
+# then
 npm run dev
 ```
 - [T3 Stack](https://create.t3.gg/)
