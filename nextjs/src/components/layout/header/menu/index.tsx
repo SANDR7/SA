@@ -32,7 +32,7 @@ const NavItem: React.FC<NavItemProps> = ({ href, text }) => {
 };
 
 const Menu = () => {
-  const { data } = trpc.useQuery(["sanity.CV"]);
+  const { data } = trpc.useQuery(["about.CV"]);
 
   const routes = [
     {

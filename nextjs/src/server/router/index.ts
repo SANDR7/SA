@@ -2,11 +2,13 @@
 import superjson from "superjson";
 import { createRouter } from "./context";
 
-import { SanityRouter } from "./sanity/home";
+import { ProjectRouter } from "./sanity/projects";
+import { AboutRouter } from "./sanity/about";
 
 export const appRouter = createRouter()
   .transformer(superjson)
-  .merge("sanity.", SanityRouter);
+  .merge("projects.", ProjectRouter)
+  .merge("about.", AboutRouter);
 
 // export type definition of API
 export type AppRouter = typeof appRouter;

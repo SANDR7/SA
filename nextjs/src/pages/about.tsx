@@ -1,6 +1,6 @@
 import React from 'react'
 import PageContainer from '../components/layout'
-import { meta } from '../utils/meta'
+import { meta } from '../data/meta'
 
 const About = () => {
   return (

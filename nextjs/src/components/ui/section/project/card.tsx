@@ -4,7 +4,7 @@ import React from "react";
 import { Sanity } from "../../../../types/sanity/home.queries";
 import Anchor from "../anchor";
 
-const ProjectCard: React.FC<Sanity.Home.Projects> = ({
+const ProjectCard: React.FC<Sanity.Projects.Home> = ({
   _id,
   title,
   slug,

@@ -1,12 +1,16 @@
 // https://sanity-codegen-dev.vercel.app/
 
 export declare namespace Sanity {
-  namespace Home {
-    type Projects = {
+  namespace Projects {
+    type Home = {
       _id: string;
       slug: string | undefined;
       excerpt: string | undefined;
-      production_link: [string | undefined, string | undefined, string | undefined];
+      production_link: [
+        string | undefined,
+        string | undefined,
+        string | undefined
+      ];
       thumbnail: {
         caption: string | undefined;
         image: string;
@@ -20,9 +24,10 @@ export declare namespace Sanity {
      * TypeScript meta programming purposes only.
      */
     type ProjectsMap = {
-      Query: Projects;
+      Query: Home;
     };
-
+  }
+  namespace About {
     type CV = {
       file: string;
       name: string;

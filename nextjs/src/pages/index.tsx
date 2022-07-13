@@ -9,14 +9,14 @@ import Anchor from "../components/ui/section/anchor";
 import Callout from "../components/ui/section/Callout";
 import SectionHeader from "../components/ui/section/header";
 import ProjectCard from "../components/ui/section/project/card";
+import { meta } from "../data/meta";
 import { appRouter } from "../server/router";
 import { Sanity } from "../types/sanity/home.queries";
-import { meta } from "../utils/meta";
 import { trpc } from "../utils/trpc";
 
 const Home: NextPage = () => {
-  const { data: projects, isLoading }: UseQueryResult<Sanity.Home.Projects[]> =
-    trpc.useQuery(["sanity.projects"]);
+  const { data: projects, isLoading }: UseQueryResult<Sanity.Projects.Home[]> =
+    trpc.useQuery(["projects.home"]);
 
   return (
     <PageContainer title={meta.title + "Web Designer, Developer & Consumer"}>
@@ -60,7 +60,7 @@ export async function getStaticProps(context: GetStaticPropsContext) {
     transformer: superjson, // optional - adds superjson serialization
   });
   // prefetch from server
-  await ssg.fetchQuery("sanity.projects");
+  await ssg.fetchQuery("projects.home");
 
   return {
     props: {

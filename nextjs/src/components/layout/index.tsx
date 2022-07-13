@@ -1,7 +1,6 @@
 import Head from "next/head";
 import React from "react";
-import { meta } from "../../utils/meta";
-import Avatar from "../ui/header/avatar";
+import { meta } from "../../data/meta";
 import Menu from "./header/menu";
 import HeaderTitle from "./header/name";
 
