@@ -3,8 +3,8 @@ import React from "react";
 const Callout: React.FC<{
   subTitle: string;
   description?: string;
-children: React.ReactNode
-}> = ({ subTitle, description,  children }) => {
+  children: React.ReactNode;
+}> = ({ subTitle, description, children }) => {
   return (
     <>
       <span
@@ -21,7 +21,7 @@ children: React.ReactNode
         {subTitle}
       </span>
       <span
-        className={`relative 
+        className="relative 
       
           left-[0rem] top-[-1.8rem]
 
@@ -30,17 +30,17 @@ children: React.ReactNode
           laptop:left-[1rem] laptop:top-[-3.2rem]
 
           desktop:left-[6rem] desktop:top-[-6rem]
-        `}
+        "
       >
         <h2
           className="font-bold 
-            leading-9 text-[28px]
+           text-[24px]  leading-[1.3] 
 
-            tablet:leading-[.9] tablet:text-[40px]
+           tablet:text-[40px] tablet:leading-none  tablet:w-11/12
 
-            laptop:text-[56px] laptop:leading-[1]
+            laptop:text-[56px]
 
-            desktop:text-[76px] desktop:w-auto desktop:leading-none
+            desktop:text-[76px]
            "
         >
           {children}

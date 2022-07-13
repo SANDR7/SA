@@ -24,9 +24,11 @@ const Home: NextPage = () => {
 
   return (
     <PageContainer title={meta.title + "Web Designer, Developer & Consumer"}>
-      <Callout subTitle="Hi There" description={meta.description}>
-        {parse(meta.slogan)}
-      </Callout>
+      <section about="what I can do best">
+        <Callout subTitle="Hi There" description={meta.description}>
+          {parse(meta.slogan)}
+        </Callout>
+      </section>
 
       <section about="projects">
         <SectionHeader title="Recent projects" />
