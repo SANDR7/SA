@@ -1,18 +1,22 @@
 import { createSSGHelpers } from "@trpc/react/ssg";
 import parse from "html-react-parser";
 import type { GetStaticPropsContext, NextPage } from "next";
+import dynamic from "next/dynamic";
 import { UseQueryResult } from "react-query";
 import superjson from "superjson";
 
 import PageContainer from "../components/layout";
-import Anchor from "../components/ui/section/anchor";
-import Callout from "../components/ui/section/Callout";
-import SectionHeader from "../components/ui/section/header";
-import ProjectCard from "../components/ui/section/project/card";
 import { meta } from "../data/meta";
 import { appRouter } from "../server/router";
 import { Sanity } from "../types/sanity/home.queries";
 import { trpc } from "../utils/trpc";
+
+const ProjectCard = dynamic(
+  () => import("../components/ui/section/project/card")
+);
+const Callout = dynamic(() => import("../components/ui/section/Callout"));
+const SectionHeader = dynamic(() => import("../components/ui/section/header"));
+const Anchor = dynamic(() => import("../components/ui/section/anchor"));
 
 const Home: NextPage = () => {
   const { data: projects, isLoading }: UseQueryResult<Sanity.Projects.Home[]> =
