@@ -1,4 +1,7 @@
 {
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true,
     "source.fixAll.format": true
@@ -12,7 +15,7 @@
     "*/node_modules/": true,
     ".eslintrc.json": true,
     "tsconfig.json": true,
-	"*/yarn.lock": true,
-	"*/.*": true,
+    "*/yarn.lock": true,
+    "*/.*": true
   }
 }

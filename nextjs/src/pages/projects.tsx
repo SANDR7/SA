@@ -1,6 +1,5 @@
 import { createSSGHelpers } from "@trpc/react/ssg";
-import parse from "html-react-parser";
-import type { GetStaticPropsContext, NextPage } from "next";
+import type { GetStaticPropsContext } from "next";
 import dynamic from "next/dynamic";
 import { UseQueryResult } from "react-query";
 import superjson from "superjson";
@@ -14,26 +13,17 @@ import { trpc } from "../utils/trpc";
 const ProjectCard = dynamic(
   () => import("../components/ui/section/project/card")
 );
-const Callout = dynamic(() => import("../components/ui/section/Callout"));
 const SectionHeader = dynamic(() => import("../components/ui/section/header"));
-const Anchor = dynamic(() => import("../components/ui/section/anchor"));
 
-const Home: NextPage = () => {
+const Projects = () => {
   const { data: projects, isLoading }: UseQueryResult<Sanity.Projects.Home[]> =
-    trpc.useQuery(["projects.home"]);
-
+    trpc.useQuery(["projects.all"]);
   return (
-    <PageContainer title={meta.title + "Web Designer, Developer & Consumer"}>
-      <section about="what I can do best">
-        <Callout subTitle="Hi There" description={meta.description}>
-          {parse(meta.slogan)}
-        </Callout>
-      </section>
-
-      <section about="projects">
-        <SectionHeader title="Recent projects" />
+    <PageContainer title={meta.title + "Projects"}>
+      <section>
+        <SectionHeader title="Projects collection" />
         {!!projects &&
-          projects?.map((project) => (
+          projects.slice(0,6).map((project) => (
             <section
               about={project.title}
               key={project._id}
@@ -42,18 +32,6 @@ const Home: NextPage = () => {
               <ProjectCard {...project} />
             </section>
           ))}
-      </section>
-      <section about="contact me for neat project ideas">
-        <SectionHeader title="Contact me" />
-
-        <Callout subTitle="Contact">
-          <Anchor
-            name="media@sandervanast.com"
-            className="!lowercase"
-            href="mailto:media@sandervanast.com"
-            newTab
-          />
-        </Callout>
       </section>
     </PageContainer>
   );
@@ -66,7 +44,7 @@ export async function getStaticProps(context: GetStaticPropsContext) {
     transformer: superjson, // optional - adds superjson serialization
   });
   // prefetch from server
-  await ssg.fetchQuery("projects.home");
+  await ssg.fetchQuery("projects.all");
 
   return {
     props: {
@@ -76,4 +54,4 @@ export async function getStaticProps(context: GetStaticPropsContext) {
   };
 }
 
-export default Home;
+export default Projects;
