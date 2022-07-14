@@ -21,7 +21,6 @@ const Footer = () => {
                 />
               </li>
             ))}
-          <li></li>
         </ul>
         <div className="spotify">
           {nowPlaying?.isPlaying ? (
@@ -31,7 +30,7 @@ const Footer = () => {
                   <Anchor
                     name={nowPlaying.title}
                     href={nowPlaying.songUrl}
-                    className="hover:text-gray-dark  dark:hover:text-gray-light"
+                    className="hover:no-underline text-black dark:text-white"
                     newTab
                   />
                 </span>
@@ -43,8 +42,7 @@ const Footer = () => {
           ) : (
             <div className="flex gap-2">
               <div className="flex flex-col text-right">
-                <span className="font-semibold text-xl">Not playing</span>
-                <span className="font-thin">Spotify</span>
+                <span className="font-medium text-xl text-white-800">Not playing</span>
               </div>
               <i className="fa-brands fa-spotify pt-1 text-2xl text-[#18d985]"></i>
             </div>
