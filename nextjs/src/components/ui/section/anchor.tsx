@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 
 const Anchor: React.FC<{
-  name: string;
+  name: string | React.ReactNode;
   href: string;
   className?: string;
   newTab?: boolean;

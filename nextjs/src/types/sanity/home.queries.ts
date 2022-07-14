@@ -40,5 +40,12 @@ export declare namespace Sanity {
         username?: string;
       }[];
     };
+
+    type SpotifyPlaying = {
+      artist: string | string[];
+      isPlaying: boolean;
+      songUrl: string;
+      title: string;
+    };
   }
 }

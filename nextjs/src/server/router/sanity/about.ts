@@ -1,5 +1,6 @@
 import groq from "groq";
 import { sanityClient } from "../../../libs/sanity";
+import { getNowPlaying } from "../../../libs/spotify";
 import { Sanity } from "../../../types/sanity/home.queries";
 import { createRouter } from "../context";
 
@@ -18,9 +19,8 @@ export const AboutRouter = createRouter()
   })
   .query("socials", {
     async resolve() {
-      const socials = await sanityClient.fetch<
-        Sanity.About.Socials
-      >(groq`*[_type== 'contributors' && name match 'Sander van Ast'][0] {
+      const socials =
+        await sanityClient.fetch<Sanity.About.Socials>(groq`*[_type== 'contributors' && name match 'Sander van Ast'][0] {
       'media': socials[][0..3]{
         name,
         link,
@@ -30,5 +30,25 @@ export const AboutRouter = createRouter()
     }`);
 
       return socials;
+    },
+  })
+  .query("now-playing", {
+    async resolve() {
+      const spotifyResponse = await getNowPlaying();
+
+      const song = await spotifyResponse.json();
+ 
+
+      // const album = song.item.album.name;
+      // const albumImageUrl = song.item.album.images[0].url;
+
+      return {
+        artist: song.item.artists
+          .map((_artist: { name: string }) => _artist.name)
+          .join(", "),
+        isPlaying: song.is_playing,
+        songUrl: song.item.external_urls.spotify,
+        title: song.item.name,
+      } as Sanity.About.SpotifyPlaying;
     },
   });
