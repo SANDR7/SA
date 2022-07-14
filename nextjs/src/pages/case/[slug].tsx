@@ -15,6 +15,8 @@ const Case: NextPage<{ slug: string }> = ({ slug }) => {
     ["projects.by-slug", { slug }]
   );
 
+  // const {data: study} = trpc.useQuery(["projects.case", {slug}])
+
   return (
     <CaseContainer
       title={project?.title as string}

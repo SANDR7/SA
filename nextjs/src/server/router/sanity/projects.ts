@@ -48,9 +48,7 @@ export const ProjectRouter = createRouter()
     input: z.object({
       slug: z.string(),
     }),
-    async resolve({ input, ctx }) {
-      const test = ctx.req?.query;
-
+    async resolve({ input }) {
       const project = await sanityClient.fetch<Sanity.Projects.Home>(
         `*[_type == 'projects' && slug.current == '${input.slug}'][0] {
         _id,
@@ -63,12 +61,26 @@ export const ProjectRouter = createRouter()
           'image': thumbnail.asset->url,
           'caption': thumbnail.caption
         },
-        case_study,
         'contributors': contributors[]->name,
         'stack': used_tech[]->{ name, type[0] },
       }`
       );
 
       return project;
+    },
+  })
+  .query("case", {
+    input: z.object({
+      slug: z.string(),
+    }),
+    async resolve({ input }) {
+      const study =
+        await sanityClient.fetch<any>(`*[_type == 'projects' && slug.current == '${input.slug}'][0] {
+        case_study->{responsibilities}
+      }`);
+
+      const { case_study } = study;
+
+      return case_study;
     },
   });

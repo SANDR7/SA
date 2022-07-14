@@ -26,7 +26,7 @@ export const AboutRouter = createRouter()
         link,
         // 'username': username,
       }
-   
+
     }`);
 
       return socials;
@@ -37,7 +37,8 @@ export const AboutRouter = createRouter()
       const spotifyResponse = await getNowPlaying();
 
       const song = await spotifyResponse.json();
- 
+
+      if (!song.is_playing) return null;
 
       // const album = song.item.album.name;
       // const albumImageUrl = song.item.album.images[0].url;
