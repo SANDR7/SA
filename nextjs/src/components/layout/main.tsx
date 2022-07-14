@@ -1,6 +1,7 @@
 import Head from "next/head";
 import React from "react";
 import { meta } from "../../data/meta";
+import Footer from "./footer";
 import Menu from "./header/menu";
 import HeaderTitle from "./header/name";
 
@@ -29,6 +30,8 @@ const PageContainer: React.FC<PageProps> = (props) => {
       <main className="bg-white dark:bg-black relative z-20 ">
         <div className="maxWith py-[3rem] overflow-hidden">{children}</div>
       </main>
+
+      <Footer/>
     </>
   );
 };

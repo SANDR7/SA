@@ -31,6 +31,14 @@ export declare namespace Sanity {
     type CV = {
       file: string;
       name: string;
-    }[];
+    };
+
+    type Socials = {
+      media: {
+        name: string;
+        link: string;
+        username?: string;
+      }[];
+    };
   }
 }

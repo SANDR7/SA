@@ -7,8 +7,8 @@ export const meta = {
     "I’m Sander an enthusiast UX designer, web developer and experienced in making things look good.",
   keywords: [
     "Portfolio",
-    "Resume",
     "Sander van Ast",
+    "website",
     "Web designer",
     "Neat",
     "Neat styled websites",
