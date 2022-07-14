@@ -44,7 +44,7 @@ const Footer = () => {
               <div className="flex flex-col text-right">
                 <span className="font-medium text-xl text-white-800">Not playing</span>
               </div>
-              <i className="fa-brands fa-spotify pt-1 text-2xl text-[#18d985]"></i>
+              <i className="fa-brands fa-spotify py-1 text-2xl text-[#18d985] hover:animate-spin"></i>
             </div>
           )}
         </div>

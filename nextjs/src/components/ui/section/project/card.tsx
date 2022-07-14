@@ -31,7 +31,7 @@ const ProjectCard: React.FC<Sanity.Projects.Home> = ({
         </div>
         <div
           className="flex flex-col 
-        border-l
+        border-l py-1
         desktop:my-[10px] desktop:pl-[40px] desktop:w-10/12 desktop:ml-[65px]
         laptop:my-[6px] laptop:pl-[30px] laptop:ml-[35px]
         tablet:my-[15px] tablet:pl-[40px] tablet:ml-[50px]
@@ -62,8 +62,8 @@ const ProjectCard: React.FC<Sanity.Projects.Home> = ({
         alt={thumbnail.caption}
         width={1200}
         height={800}
-        className="w-max aspect-4/3
-                    group-hover:saturate-100
+        className="w-max
+                    group-hover:saturate-100 transition-[filter] ease-in-out
 
                     mobile:saturate-100
                     

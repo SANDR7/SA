@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { createSSGHelpers } from "@trpc/react/ssg";
 import parse from "html-react-parser";
 import type { GetStaticPropsContext, NextPage } from "next";
@@ -28,6 +29,13 @@ const Home: NextPage = () => {
         <Callout subTitle="Hi There" description={meta.description}>
           {parse(meta.slogan)}
         </Callout>
+        <div className="relative animate-bounce w-fill h-9">
+          <img
+            src="./assets/ArrowDown.png"
+            className="absolute laptop:bottom-[5rem] laptop:left-0 mobile:right-0 mobile:block tiny:hidden dark:invert"
+            alt="scroll indicator"
+          />
+        </div>
       </section>
 
       <section about="projects">
@@ -65,7 +73,7 @@ export async function getStaticProps(context: GetStaticPropsContext) {
     ctx: {} as any,
     transformer: superjson, // optional - adds superjson serialization
   });
-  
+
   await ssg.fetchQuery("projects.home");
 
   return {
