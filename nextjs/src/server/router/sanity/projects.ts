@@ -12,6 +12,7 @@ export const ProjectRouter = createRouter()
         _id,
         'slug': slug.current,
         excerpt,
+        'production_link': [client_link, saved_link, live_link],
         'type': type[0],
         title,
         'thumbnail': {

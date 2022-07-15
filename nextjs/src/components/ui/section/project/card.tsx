@@ -1,7 +1,7 @@
+import { Sanity } from "@/types/sanity/home.queries";
 import Image from "next/image";
 import React from "react";
 
-import { Sanity } from "../../../../types/sanity/home.queries";
 import Anchor from "../anchor";
 
 const ProjectCard: React.FC<Sanity.Projects.Home> = ({
@@ -50,23 +50,35 @@ const ProjectCard: React.FC<Sanity.Projects.Home> = ({
           <strong className="uppercase text-white-800 desktop:mt-[80px]">
             {type === "graphic" ? "graphic design" : type}
           </strong>
-          <Anchor name="Read more" className="w-max" href={`case/${slug}`} />
+          <Anchor
+            name="Read more"
+            title={`Case study of ${title}`}
+            className="w-max"
+            href={`case/${slug}`}
+          />
         </div>
       </div>
-      <Image
-        src={thumbnail.image}
-        alt={thumbnail.caption}
-        width={1200}
-        height={800}
-        className="w-max
-                    transition-[filter] ease-in-out group-hover:saturate-100
+      <Anchor
+        name={
+          <Image
+            src={thumbnail.image}
+            alt={thumbnail.caption}
+            width={1200}
+            height={800}
+            className="w-max
+              transition-[filter] ease-in-out group-hover:saturate-100
 
-                    dark:brightness-[.8]
-                    
-                    mobile:saturate-100
-                  
-                    laptop:saturate-0"
-        objectFit="cover"
+              dark:brightness-[.8]
+              
+              mobile:saturate-100
+            
+              laptop:saturate-0"
+            objectFit="cover"
+          />
+        }
+        href={production_link.find((link) => link) as string}
+        title={`${title} website`}
+        newTab
       />
     </>
   );
