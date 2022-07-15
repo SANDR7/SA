@@ -10,6 +10,16 @@ export default {
       type: "string",
     },
     {
+      title: "Website link",
+      name: "link",
+      description: "Website of the organization / company",
+      type: "url",
+      validation: (Rule) =>
+        Rule.uri({
+          scheme: ["https"],
+        }),
+    },
+    {
       name: "type",
       title: "Type",
       type: "array",
