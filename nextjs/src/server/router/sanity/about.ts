@@ -1,7 +1,7 @@
 import groq from "groq";
 import { sanityClient } from "../../../libs/sanity";
 import { getNowPlaying } from "../../../libs/spotify";
-import { Sanity } from "../../../types/sanity/home.queries";
+import { Sanity } from "../../../types/sanity/queries";
 import { createRouter } from "../context";
 
 export const AboutRouter = createRouter()
@@ -51,5 +51,35 @@ export const AboutRouter = createRouter()
         songUrl: song.item.external_urls.spotify,
         title: song.item.name,
       } as Sanity.About.SpotifyPlaying;
+    },
+  })
+  .query("skills", {
+    async resolve() {
+      const wantedData = `
+        name,
+        link,
+        'logo': {
+          'image': logo.asset->url,
+        }`;
+
+      const ProgramSkills =
+        await sanityClient.fetch(groq`*[_type == 'skills' && type[0] match "program"] {
+       ${wantedData}
+      }`);
+      const ToolSkills =
+        await sanityClient.fetch(groq`*[_type == 'skills' && type[0] match "tool"] {
+      ${wantedData}
+      }`);
+
+      const LanguageSkills =
+        await sanityClient.fetch(groq`*[_type == 'skills'] | order(type[2], type[0], type[1]) {
+      ${wantedData}
+      }`);
+
+      return {
+        ProgramSkills,
+        LanguageSkills,
+        ToolSkills,
+      } as Sanity.About.Skills;
     },
   });

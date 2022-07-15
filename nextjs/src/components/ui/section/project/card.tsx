@@ -1,4 +1,4 @@
-import { Sanity } from "@/types/sanity/home.queries";
+import { Sanity } from "../../../../types/sanity/queries";
 import Image from "next/image";
 import React from "react";
 

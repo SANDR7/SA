@@ -7,7 +7,7 @@ import superjson from "superjson";
 import PageContainer from "../components/layout/main";
 import { meta } from "../data/meta";
 import { appRouter } from "../server/router";
-import { Sanity } from "../types/sanity/home.queries";
+import { Sanity } from "../types/sanity/queries";
 import { trpc } from "../utils/trpc";
 
 const ProjectCard = dynamic(
@@ -19,7 +19,7 @@ const Projects: NextPage = () => {
   const { data: projects }: UseQueryResult<Sanity.Projects.Home[]> =
     trpc.useQuery(["projects.all"]);
   return (
-    <PageContainer title={meta.title + "Projects"}>
+    <PageContainer title={meta.name + " — Projects"}>
       <section>
         <SectionHeader title="Projects collection" />
         {!!projects &&

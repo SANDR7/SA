@@ -1,7 +1,7 @@
 import groq from "groq";
 import { z } from "zod";
 import { sanityClient } from "../../../libs/sanity";
-import { Sanity } from "../../../types/sanity/home.queries";
+import { Sanity } from "../../../types/sanity/queries";
 import { createRouter } from "../context";
 
 export const ProjectRouter = createRouter()
