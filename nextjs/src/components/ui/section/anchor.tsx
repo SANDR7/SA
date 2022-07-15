@@ -8,7 +8,7 @@ const Anchor: React.FC<{
   newTab?: boolean;
   onClick?: React.MouseEventHandler<HTMLAnchorElement> | undefined;
 }> = ({ name, className, href, newTab, onClick }) => {
-  const defaultStyle = "text-red capitalize hover:underline";
+  const defaultStyle = "capitalize text-red hover:underline";
 
   if (newTab)
     return (

@@ -57,7 +57,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   );
 
   return {
-    paths: projects.map((project: {slug: string | undefined}) => ({
+    paths: projects.map((project: { slug: string | undefined }) => ({
       params: {
         slug: project.slug,
       },

@@ -30,8 +30,8 @@ const PageContainer: React.FC<PageProps> = (props) => {
         </div>
       </header>
 
-      <main className="bg-white dark:bg-black relative z-20 ">
-        <div className="maxWith py-[3rem] overflow-hidden">{children}</div>
+      <main className="relative z-20 bg-white dark:bg-black ">
+        <div className="maxWith overflow-hidden py-[3rem]">{children}</div>
       </main>
 
       <Footer />

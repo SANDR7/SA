@@ -17,9 +17,9 @@ const NavItem: React.FC<NavItemProps> = ({ href, text }) => {
   return (
     <Link href={href}>
       <a
-        className={`mr-[1rem] rounded desktop:p-3 p-2 hover:bg-white dark:hover:bg-black ${
+        className={`mr-[1rem] rounded p-2 hover:bg-white dark:hover:bg-black desktop:p-3 ${
           isActive
-            ? "dark:!text-black-text !text-white-text font-medium"
+            ? "font-medium !text-white-text dark:!text-black-text"
             : "text-white-800"
         }`}
         title={`${text} link`}
@@ -61,11 +61,11 @@ const Menu = () => {
               <NavItem href={route.link} text={route.name} />
             </li>
           ))}
-        <li className="tablet:text-[20px] laptop:text-[24px] tiny:block mobile:hidden tablet:block">
+        <li className="tiny:block mobile:hidden tablet:block tablet:text-[20px] laptop:text-[24px]">
           <Anchor
             href={data?.file as string}
             name="CV"
-            className="rounded text-red desktop:p-3 p-2 hover:bg-white dark:hover:bg-black cursor-pointer hover:!no-underline"
+            className="cursor-pointer rounded p-2 text-red hover:bg-white hover:!no-underline dark:hover:bg-black desktop:p-3"
             newTab
           />
         </li>

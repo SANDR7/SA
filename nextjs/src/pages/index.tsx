@@ -29,10 +29,10 @@ const Home: NextPage = () => {
         <Callout subTitle="Hi There" description={meta.description}>
           {parse(meta.slogan)}
         </Callout>
-        <div className="relative animate-bounce w-fill h-9">
+        <div className="w-fill relative h-9 animate-bounce">
           <img
             src="./assets/ArrowDown.png"
-            className="absolute laptop:bottom-[5rem] laptop:left-0 mobile:right-0 mobile:block tiny:hidden dark:invert"
+            className="absolute dark:invert tiny:hidden mobile:right-0 mobile:block laptop:bottom-[5rem] laptop:left-0"
             alt="scroll indicator"
           />
         </div>
@@ -45,7 +45,7 @@ const Home: NextPage = () => {
             <section
               about={project.title}
               key={project._id}
-              className="my-[60px] group relative laptop:flex"
+              className="group relative my-[60px] laptop:flex"
             >
               <ProjectCard {...project} />
             </section>

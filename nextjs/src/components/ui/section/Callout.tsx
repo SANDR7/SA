@@ -8,8 +8,8 @@ const Callout: React.FC<{
   return (
     <>
       <span
-        className="font-bold text-white-600 dark:text-black-600
-            text-[48px]
+        className="text-[48px] font-bold text-white-600
+            dark:text-black-600
 
             tablet:text-[62px]
 
@@ -33,19 +33,19 @@ const Callout: React.FC<{
         "
       >
         <h2
-          className="font-bold 
-           text-[24px]  leading-[1.3] 
+          className="text-[24px] 
+          font-bold  leading-[1.3] 
 
-           tablet:text-[40px] tablet:leading-none  tablet:w-11/12
+          tablet:w-11/12 tablet:text-[40px]  tablet:leading-none
 
-            laptop:text-[56px]
+          laptop:text-[56px]
 
-            desktop:text-[76px]
+          desktop:text-[76px]
            "
         >
           {children}
         </h2>
-        <p className="tablet:w-8/12 desktop:w-4/12 opacity-70 mt-4">
+        <p className="mt-4 opacity-70 tablet:w-8/12 desktop:w-4/12">
           {description}
         </p>
       </span>

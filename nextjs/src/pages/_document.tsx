@@ -45,7 +45,7 @@ export default class _Document extends Document {
             strategy="afterInteractive"
           />
         </Head>
-        <body className="dark:text-black-text text-white-text selection:bg-section-light selection:dark:bg-section-dark">
+        <body className="text-white-text selection:bg-section-light dark:text-black-text selection:dark:bg-section-dark">
           <Main />
           <NextScript />
         </body>

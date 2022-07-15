@@ -23,11 +23,11 @@ const Projects: NextPage = () => {
       <section>
         <SectionHeader title="Projects collection" />
         {!!projects &&
-          projects.slice(0,6).map((project) => (
+          projects.slice(0, 6).map((project) => (
             <section
               about={project.title}
               key={project._id}
-              className="my-[60px] group relative laptop:flex"
+              className="group relative my-[60px] laptop:flex"
             >
               <ProjectCard {...project} />
             </section>

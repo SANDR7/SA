@@ -15,34 +15,34 @@ const ProjectCard: React.FC<Sanity.Projects.Home> = ({
 }) => {
   return (
     <>
-      <div className="desktop:w-9/12 laptop:w-11/12">
-        <div className="desktop:h-[154px] laptop:h-[123px] tablet:h-[100px] font-medium flex items-stretch leading-[1.1]">
+      <div className="laptop:w-11/12 desktop:w-9/12">
+        <div className="flex items-stretch font-medium leading-[1.1] tablet:h-[100px] laptop:h-[123px] desktop:h-[154px]">
           <h4
             className="self-end 
-                          desktop:text-[76px]
-                          laptop:text-[58px]
-                          tablet:text-[62px]
                           text-[38px]
+                          tablet:text-[62px]
+                          laptop:text-[58px]
+                          desktop:text-[76px]
                           "
           >
             {title}
-            <span className="text-orange font-bold">.</span>
+            <span className="font-bold text-orange">.</span>
           </h4>
         </div>
         <div
-          className="flex flex-col 
-        border-l py-1
-        desktop:my-[10px] desktop:pl-[40px] desktop:w-10/12 desktop:ml-[65px]
-        laptop:my-[6px] laptop:pl-[30px] laptop:ml-[35px]
-        tablet:my-[15px] tablet:pl-[40px] tablet:ml-[50px]
-        my-[10px] pl-[20px] ml-[15px]
+          className="my-[10px] ml-[15px] 
+        flex flex-col
+        border-l py-1 pl-[20px] tablet:my-[15px]
+        tablet:ml-[50px] tablet:pl-[40px] laptop:my-[6px]
+        laptop:ml-[35px] laptop:pl-[30px] desktop:my-[10px]
+        desktop:ml-[65px] desktop:w-10/12 desktop:pl-[40px]
         "
         >
           <p
-            className="desktop:min-h-[120px] desktop:text-[18px]
+            className="min-h-[80px] tablet:min-h-[90px]
                         laptop:min-h-[120px]
-                        tablet:min-h-[90px]
-                        min-h-[80px]
+                        desktop:min-h-[120px]
+                        desktop:text-[18px]
           "
           >
             {excerpt}
@@ -50,11 +50,7 @@ const ProjectCard: React.FC<Sanity.Projects.Home> = ({
           <strong className="uppercase text-white-800 desktop:mt-[80px]">
             {type === "graphic" ? "graphic design" : type}
           </strong>
-          <Anchor
-            name="Read more"
-            className="w-max"
-            href={`case/${slug}`}
-          />
+          <Anchor name="Read more" className="w-max" href={`case/${slug}`} />
         </div>
       </div>
       <Image
@@ -63,13 +59,13 @@ const ProjectCard: React.FC<Sanity.Projects.Home> = ({
         width={1200}
         height={800}
         className="w-max
-                    group-hover:saturate-100 transition-[filter] ease-in-out
+                    transition-[filter] ease-in-out group-hover:saturate-100
 
-                    mobile:saturate-100
+                    dark:brightness-[.8]
                     
-                    laptop:saturate-0
+                    mobile:saturate-100
                   
-                    dark:brightness-[.8]"
+                    laptop:saturate-0"
         objectFit="cover"
       />
     </>

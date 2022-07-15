@@ -53,10 +53,10 @@ export function AnimatedBars() {
   }, []);
 
   return (
-    <div className="w-auto flex mb-[1.9rem] items-end overflow-hidden">
-      <span id="bar1" className="w-1 mr-[3px] h-2 bg-black-800 opacity-75" />
-      <span id="bar2" className="w-1 mr-[3px] h-1 bg-black-800" />
-      <span id="bar3" className="w-1 h-3 bg-black-800 opacity-80" />
+    <div className="mb-[1.9rem] flex w-auto items-end overflow-hidden">
+      <span id="bar1" className="mr-[3px] h-2 w-1 bg-black-800 opacity-75" />
+      <span id="bar2" className="mr-[3px] h-1 w-1 bg-black-800" />
+      <span id="bar3" className="h-3 w-1 bg-black-800 opacity-80" />
     </div>
   );
 }
