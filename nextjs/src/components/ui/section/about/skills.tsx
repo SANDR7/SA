@@ -16,7 +16,7 @@ const Skill: React.FC<Sanity.About.SkillsData> = ({
           <Image src={logo.image} alt={`${name} logo`} height={60} width={60} />
         }
         newTab
-        className="h-[55px] w-[55px] duration-[400ms] hover:scale-90"
+        className="h-[55px] w-[55px] saturate-0 duration-[400ms] hover:scale-90 hover:saturate-100 dark:brightness-[.8]"
         href={link as string}
       />
       <p

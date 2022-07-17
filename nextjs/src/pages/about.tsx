@@ -19,7 +19,10 @@ const About = () => {
   return (
     <PageContainer title={meta.name + " — About"}>
       <section about="introducing myself">
-        <Callout subTitle="Hallo">
+        <Callout
+          subTitle="Heeeeey"
+          description="I'm Sander van Ast. A focused eye for design and code. And I like to work on computers, my health, people, cubes, bikes, Lego and most of all UI designs!"
+        >
           I also <span className="text-blue">Develop</span> for a more enjoyable
           internet
         </Callout>
@@ -31,10 +34,10 @@ const About = () => {
             Programming languages
           </p>
           <p className="border-y border-green p-[5px] text-center tablet:p-[10px]">
-            Software program
+            Software programs
           </p>
           <p className="border-y border-blue p-[5px] text-center tablet:p-[10px]">
-            Development Tool
+            Development Tools
           </p>
         </div>
         <div className="grid grid-cols-2 py-2 mobile:place-items-center laptop:grid-cols-3 desktop:grid-cols-4">
@@ -69,7 +72,7 @@ export async function getStaticProps(context: GetStaticPropsContext) {
     transformer: superjson, // optional - adds superjson serialization
   });
 
-  await ssg.fetchQuery("projects.home");
+  await ssg.fetchQuery("about.skills");
 
   return {
     props: {
