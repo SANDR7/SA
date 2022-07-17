@@ -17,7 +17,7 @@ const About = () => {
   const { data: skills } = trpc.useQuery(["about.skills"]);
 
   return (
-    <PageContainer title={meta.name + " — About"}>
+    <PageContainer title={`${meta.name} — About`}>
       <section about="introducing myself">
         <Callout
           subTitle="Heeeeey"

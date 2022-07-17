@@ -19,7 +19,7 @@ const Projects: NextPage = () => {
   const { data: projects }: UseQueryResult<Sanity.Projects.Home[]> =
     trpc.useQuery(["projects.all"]);
   return (
-    <PageContainer title={meta.name + " — Projects"}>
+    <PageContainer title={`${meta.name} — Projects`}>
       <section>
         <SectionHeader title="Projects collection" />
         {!!projects &&
