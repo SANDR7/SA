@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .maxWith {
-  @apply mx-auto max-w-[342px] tablet:max-w-[38rem] laptop:max-w-[52rem] desktop:max-w-[86rem];
+  @apply mx-auto max-w-[360px] tablet:max-w-[38rem] laptop:max-w-[52rem] desktop:max-w-[86rem];
 }

@@ -55,31 +55,17 @@ export const AboutRouter = createRouter()
   })
   .query("skills", {
     async resolve() {
-      const wantedData = `
-        name,
+      const skills = await sanityClient.fetch<
+        Sanity.About.SkillsData[]
+      >(groq`*[_type == 'skills'] | order(type[2], type[0], type[1]) {
+       name,
         link,
+        'type': type[0],
         'logo': {
           'image': logo.asset->url,
-        }`;
-
-      const ProgramSkills =
-        await sanityClient.fetch(groq`*[_type == 'skills' && type[0] match "program"] {
-       ${wantedData}
-      }`);
-      const ToolSkills =
-        await sanityClient.fetch(groq`*[_type == 'skills' && type[0] match "tool"] {
-      ${wantedData}
+        }
       }`);
 
-      const LanguageSkills =
-        await sanityClient.fetch(groq`*[_type == 'skills'] | order(type[2], type[0], type[1]) {
-      ${wantedData}
-      }`);
-
-      return {
-        ProgramSkills,
-        LanguageSkills,
-        ToolSkills,
-      } as Sanity.About.Skills;
+      return skills;
     },
   });

@@ -81,6 +81,7 @@ export declare namespace Sanity {
     type SkillsData = {
       name: string | undefined;
       link: string | undefined;
+      type: string | undefined;
       logo: {
         image: string;
       };

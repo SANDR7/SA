@@ -7,7 +7,7 @@ import superjson from "superjson";
 import CaseContainer from "../../components/layout/case";
 import { sanityClient } from "../../libs/sanity";
 import { appRouter } from "../../server/router";
-import { Sanity } from "../../types/sanity/projects.queries";
+import { Sanity } from "../../types/sanity/queries";
 import { trpc } from "../../utils/trpc";
 
 const Case: NextPage<{ slug: string }> = ({ slug }) => {
