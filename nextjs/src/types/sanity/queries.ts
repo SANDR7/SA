@@ -6,7 +6,7 @@ export declare namespace Sanity {
       _id: string;
       slug: string | undefined;
       excerpt: string | undefined;
-      tags: string[] | undefined,
+      tags: string[] | undefined;
       production_link: [
         string | undefined,
         string | undefined,
@@ -78,7 +78,7 @@ export declare namespace Sanity {
       LanguageSkills: SkillsData[];
       ToolSkills: SkillsData[];
       ProgramSkills: SkillsData[];
-    }
+    };
     type SkillsData = {
       name: string | undefined;
       link: string | undefined;
@@ -86,6 +86,16 @@ export declare namespace Sanity {
       logo: {
         image: string;
       };
+    };
+
+    type Posts = {
+      body: unknown | undefined;
+      excerpt: string | undefined;
+      likes: number;
+      slug: string | undefined;
+      title: string | undefined;
+      date: string | undefined;
+      tags: string[];
     };
   }
 }

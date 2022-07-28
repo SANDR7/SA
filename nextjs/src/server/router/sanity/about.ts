@@ -71,7 +71,14 @@ export const AboutRouter = createRouter()
   })
   .query("blog-posts", {
     async resolve() {
-      const blogs = await sanityClient.fetch(groq`*[_type == 'blogs']`);
+      const blogs = await sanityClient.fetch<Sanity.About.Posts[]>(groq`*[_type == 'blogs'] {
+        excerpt,
+        body,
+        tags,
+        'slug': slug.current,
+        title,
+        'createdAt': _createdAt,
+      }`);
 
       return blogs;
     },

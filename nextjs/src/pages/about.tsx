@@ -1,15 +1,16 @@
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { createSSGHelpers } from "@trpc/react/ssg";
 import type { GetStaticPropsContext, NextPage } from "next";
 import dynamic from "next/dynamic";
 import superjson from "superjson";
 import { appRouter } from "../server/router";
-import { useAutoAnimate } from '@formkit/auto-animate/react'
 
+import dayjs from "dayjs";
+import { useState } from "react";
 import PageContainer from "../components/layout/main";
 import SectionHeader from "../components/ui/section/header";
 import { meta } from "../data/meta";
 import { trpc } from "../utils/trpc";
-import { useState } from "react";
 
 const Skill = dynamic(() => import("../components/ui/section/about/skills"));
 const Callout = dynamic(() => import("../components/ui/section/Callout"));
@@ -53,11 +54,7 @@ const About: NextPage = () => {
     if (type === "All") {
       setFilterSkills(skills);
     } else {
-      setFilterSkills(
-        skills?.filter((skills) =>
-        skills?.type?.includes(type)
-        )
-      );
+      setFilterSkills(skills?.filter((skills) => skills?.type?.includes(type)));
     }
   };
 
@@ -81,19 +78,61 @@ const About: NextPage = () => {
               onClick={() => handleSkillFilter(filter.value)}
               className={`border-y border-${filter.color} ${
                 activeFilter === filter.value ? `text-${filter.color}` : ""
-              } p-[5px] cursor-pointer text-center tablet:p-[10px]`}
+              } cursor-pointer p-[5px] text-center tablet:p-[10px]`}
             >
               {filter.title}
             </p>
           ))}
         </div>
-        <div className="grid grid-cols-2 py-2 mobile:place-items-center laptop:grid-cols-3 desktop:grid-cols-4" ref={skillRef}>
+        <div
+          className="grid grid-cols-2 py-2 mobile:place-items-center laptop:grid-cols-3 desktop:grid-cols-4"
+          ref={skillRef}
+        >
           {!!skills &&
-            filterSkills?.map((skill) => <Skill key={skill.name} {...skill}  />)}
+            filterSkills?.map((skill) => <Skill key={skill.name} {...skill} />)}
         </div>
       </section>
       <section about="recent blog articles">
         <SectionHeader title="Blog" />
+        <div className="grid grid-cols-2 gap-10 py-2 laptop:grid-cols-2">
+          {!!blogs &&
+            blogs?.map((post, idx: number) => (
+              <span key={idx}>
+                <Anchor
+                  name={
+                    <>
+                      <div className="flex items-end justify-between border-b border-white-800 pb-[10px]">
+                        <h4 className="text-3xl font-bold">
+                          {post.title}
+                          <span className="text-orange">.</span>
+                        </h4>
+                        <div className="flex gap-2">
+                          <span>{dayjs(post.date).format("DD/MM/YYYY")}</span>
+                        </div>
+                      </div>
+                      <p className="min-h-[60px] pt-[5px] !normal-case">
+                        {post.excerpt}
+                      </p>
+                      {!!post.tags && (
+                        <div className="flex gap-4 pt-6">
+                          {post.tags?.map((tag: string, idx: number) => (
+                            <span
+                              key={idx}
+                              className="rounded-full dark:bg-white dark:text-black bg-black text-white p-3 py-1"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </>
+                  }
+                  className="!text-black dark:!text-white !no-underline"
+                  href={`post/${post.slug}`}
+                />
+              </span>
+            ))}
+        </div>
       </section>
 
       <section about="contact me for neat project ideas">
@@ -130,4 +169,3 @@ export async function getStaticProps(context: GetStaticPropsContext) {
 }
 
 export default About;
-
