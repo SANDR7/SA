@@ -33,8 +33,8 @@ const Callout: React.FC<{
         "
       >
         <h2
-          className="text-[24px] 
-          font-bold  leading-[1.3] 
+          className="text-[28px] 
+          font-bold leading-[1.3] 
 
           tablet:w-11/12 tablet:text-[40px]  tablet:leading-none
 
@@ -45,7 +45,7 @@ const Callout: React.FC<{
         >
           {children}
         </h2>
-        <p className="mt-4 opacity-70 tablet:w-8/12 desktop:w-4/12">
+        <p className="mt-4 opacity-70 tablet:w-8/12 desktop:w-5/12">
           {description}
         </p>
       </span>

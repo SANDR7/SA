@@ -19,9 +19,10 @@ const Case: NextPage<{ slug: string }> = ({ slug }) => {
 
   return (
     <CaseContainer
-      title={project?.title as string}
-      description={project?.excerpt as string}
-      keywords={project?.keywords as string[]}
+      title={project?.title}
+      description={project?.excerpt}
+      keywords={project?.keywords}
+      image={project?.thumbnail?.image}
     >
       Case {project?.title}
     </CaseContainer>

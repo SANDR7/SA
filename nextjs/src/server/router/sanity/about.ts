@@ -57,7 +57,7 @@ export const AboutRouter = createRouter()
     async resolve() {
       const skills = await sanityClient.fetch<
         Sanity.About.SkillsData[]
-      >(groq`*[_type == 'skills'] | order(name asc) | order(type[0] asc) {
+      >(groq`*[_type == 'skills'] | order(name asc) | order(type[0] asc){
        name,
         link,
         'type': type[0],
@@ -67,5 +67,12 @@ export const AboutRouter = createRouter()
       }`);
 
       return skills;
+    },
+  })
+  .query("blog-posts", {
+    async resolve() {
+      const blogs = await sanityClient.fetch(groq`*[_type == 'blogs']`);
+
+      return blogs;
     },
   });

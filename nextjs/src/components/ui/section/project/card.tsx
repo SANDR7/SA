@@ -1,6 +1,6 @@
-import { Sanity } from "../../../../types/sanity/queries";
 import Image from "next/image";
 import React from "react";
+import { Sanity } from "../../../../types/sanity/queries";
 
 import Anchor from "../anchor";
 
@@ -8,6 +8,7 @@ const ProjectCard: React.FC<Sanity.Projects.Home> = ({
   _id,
   title,
   slug,
+  tags,
   excerpt,
   type,
   production_link,
@@ -38,6 +39,11 @@ const ProjectCard: React.FC<Sanity.Projects.Home> = ({
         desktop:ml-[65px] desktop:w-10/12 desktop:pl-[40px]
         "
         >
+          {!!tags && (
+            <div>
+              <span className="text-green capitalize">{tags.join(' – ')}</span>
+            </div>
+          )}
           <p
             className="min-h-[80px] tablet:min-h-[90px]
                         laptop:min-h-[120px]

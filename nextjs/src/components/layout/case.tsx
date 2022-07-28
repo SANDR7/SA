@@ -4,14 +4,15 @@ import Menu from "./header/menu";
 import HeaderTitle from "./header/name";
 
 interface PageProps {
-  title: string;
-  description: string;
-  keywords: string[];
+  title: string | undefined;
+  description: string | undefined;
+  image: string | undefined;
+  keywords: string[] | undefined;
   children: React.ReactNode;
 }
 
 const CaseContainer: React.FC<PageProps> = (props) => {
-  const { title, description, keywords, children } = props;
+  const { title, description, image, keywords, children } = props;
   return (
     <>
       <Head>
@@ -31,9 +32,14 @@ const CaseContainer: React.FC<PageProps> = (props) => {
           property="og:site_name"
           content={`Case study — ${title} | Sander van Ast`}
         />
+        <meta property="og:image" content={image} />
+        <meta property="og:description" content={description} />
 
         {/* twitter metas */}
         <meta name="twitter:title" content={title} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content={image} />
+        <meta name="twitter:description" content={description} />
       </Head>
 
       <header className="bg-white-600 dark:bg-black-600">

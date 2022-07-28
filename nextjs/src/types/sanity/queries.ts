@@ -6,6 +6,7 @@ export declare namespace Sanity {
       _id: string;
       slug: string | undefined;
       excerpt: string | undefined;
+      tags: string[] | undefined,
       production_link: [
         string | undefined,
         string | undefined,
