@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 import React from "react";
 import { Sanity } from "../../../../types/sanity/queries";
@@ -41,7 +42,7 @@ const ProjectCard: React.FC<Sanity.Projects.Home> = ({
         >
           {!!tags && (
             <div>
-              <span className="text-green capitalize">{tags.join(' – ')}</span>
+              <span className="capitalize text-green">{tags.join(" – ")}</span>
             </div>
           )}
           <p
@@ -57,9 +58,14 @@ const ProjectCard: React.FC<Sanity.Projects.Home> = ({
             {type === "graphic" ? "graphic design" : type}
           </strong>
           <Anchor
-            name="Read more"
+            name={
+              <img
+                src="./assets/ArrowRight.png"
+                className="py-2 transition-transform hover:translate-x-5"
+                alt="scroll indicator"
+              />
+            }
             title={`Case study of ${title}`}
-            className="w-max"
             href={`case/${slug}`}
           />
         </div>

@@ -1,3 +1,4 @@
+import { PortableText } from "@portabletext/react";
 import { createSSGHelpers } from "@trpc/react/ssg";
 import groq from "groq";
 import { GetServerSidePropsContext, GetStaticPaths, NextPage } from "next";
@@ -15,7 +16,9 @@ const Case: NextPage<{ slug: string }> = ({ slug }) => {
     ["projects.by-slug", { slug }]
   );
 
-  // const {data: study} = trpc.useQuery(["projects.case", {slug}])
+  const { data: study } = trpc.useQuery(["projects.case", { slug }]);
+
+  console.log(study);
 
   return (
     <CaseContainer
@@ -25,6 +28,8 @@ const Case: NextPage<{ slug: string }> = ({ slug }) => {
       image={project?.thumbnail?.image}
     >
       Case {project?.title}
+      <PortableText value={study.responsibilities}  />
+      <PortableText value={study.research} />
     </CaseContainer>
   );
 };
