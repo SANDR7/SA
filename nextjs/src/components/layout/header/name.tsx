@@ -5,7 +5,7 @@ const HeaderTitle = ({ name }: { name: string }) => {
       overflow-hidden
       text-[36px]
       
-      font-medium leading-none
+      font-semibold leading-none
       text-orange opacity-[80%]
 
       tiny:hidden

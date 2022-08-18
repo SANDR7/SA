@@ -27,18 +27,18 @@ const Callout: React.FC<{
 
           tablet:left-[.8rem] tablet:top-[-2.2rem]
 
-          laptop:left-[1rem] laptop:top-[-3.2rem]
+          laptop:left-[1rem] laptop:top-[-3.2rem] 
 
           desktop:left-[6rem] desktop:top-[-6rem]
         "
       >
         <h2
           className="text-[28px] 
-          font-bold leading-[1.3] 
+          font-bold leading-[1.3]
 
-          tablet:w-11/12 tablet:text-[40px]  tablet:leading-none
+          tablet:w-11/12 tablet:text-[40px]  tablet:leading-none tablet:w-full
 
-          laptop:text-[56px]
+          laptop:text-[56px] laptop:w-10/12
 
           desktop:text-[76px]
            "

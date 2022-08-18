@@ -43,7 +43,7 @@ const About: NextPage = () => {
     },
     {
       title: "All skills",
-      color: "white",
+      color: null,
       value: "All",
     },
   ];
@@ -77,7 +77,7 @@ const About: NextPage = () => {
               key={idx}
               onClick={() => handleSkillFilter(filter.value)}
               className={`border-y border-${filter.color} ${
-                activeFilter === filter.value ? `text-${filter.color}` : ""
+                activeFilter === filter.value ? `text-${filter.color}` : "text-black dark:text-white"
               } cursor-pointer p-[5px] text-center tablet:p-[10px]`}
             >
               {filter.title}

@@ -15,7 +15,8 @@ const Posts: React.FC<Sanity.About.Posts> = ({
     <>
       <div className="flex items-end justify-between border-b border-white-800 pb-[10px]">
         <h4 className="text-3xl font-bold">
-          {title}
+          <Anchor href={`/post/${slug}`}  name={title} title={title} className="text-black dark:text-white no-underline"/>
+
           <span className="text-orange">.</span>
         </h4>
         <div className="flex gap-2">
@@ -39,7 +40,7 @@ const Posts: React.FC<Sanity.About.Posts> = ({
         name={
           <img
             src="./assets/ArrowRight.png"
-            className="py-4 hover:translate-x-5 transition-transform"
+            className="py-4 transition-transform hover:translate-x-5"
             alt="scroll indicator"
           />
         }
