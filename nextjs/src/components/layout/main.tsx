@@ -21,7 +21,7 @@ const PageContainer: React.FC<PageProps> = (props) => {
         <title>{title ?? "Sander van Ast — Website"}</title>
       </Head>
 
-      <header className="bg-white-600 dark:bg-black-600">
+      <header>
         <div className="maxWith py-[2rem]">
           <Menu />
         </div>
@@ -30,7 +30,7 @@ const PageContainer: React.FC<PageProps> = (props) => {
         </div>
       </header>
 
-      <main className="relative z-20 bg-white dark:bg-black ">
+      <main className="relative z-20 bg-white dark:bg-black">
         <div className="maxWith overflow-hidden py-[3rem]">{children}</div>
       </main>
 
