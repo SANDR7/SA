@@ -10,6 +10,7 @@ import { sanityClient } from "../../libs/sanity";
 import { appRouter } from "../../server/router";
 import { Sanity } from "../../types/sanity/queries";
 import { trpc } from "../../utils/trpc";
+import { useHorizontalScroll } from "../../utils/useHorizontalScroll";
 
 const Case: NextPage<{ slug: string }> = ({ slug }) => {
   const { data: project }: UseQueryResult<Sanity.Projects.Case> = trpc.useQuery(
@@ -18,7 +19,9 @@ const Case: NextPage<{ slug: string }> = ({ slug }) => {
 
   const { data: study } = trpc.useQuery(["projects.case", { slug }]);
 
-  console.log(study);
+  console.log(project);
+
+  const scrollRef = useHorizontalScroll() as any;
 
   return (
     <CaseContainer
@@ -27,9 +30,31 @@ const Case: NextPage<{ slug: string }> = ({ slug }) => {
       keywords={project?.keywords}
       image={project?.thumbnail?.image}
     >
-      Case {project?.title}
-      <PortableText value={study.responsibilities}  />
-      <PortableText value={study.research} />
+      <div ref={scrollRef} className="flex h-[45vh] w-full overflow-auto">
+        <div className="w-1/2 flex-shrink-0 border">
+          I will definitely overflow due to the small width of my parent
+          container Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit
+          optio officiis, nulla iure consequatur nisi accusamus explicabo culpa
+          nemo nostrum ad dicta ullam cupiditate beatae laborum autem quis neque
+          modi?
+        </div>
+        <div className="w-1/2 flex-shrink-0 border">
+          I will definitely overflow due to the small width of my parent
+          container Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit
+          optio officiis, nulla iure consequatur nisi accusamus explicabo culpa
+          nemo nostrum ad dicta ullam cupiditate beatae laborum autem quis neque
+          modi?
+        </div>
+        <div className="w-1/2 flex-shrink-0 border">
+          I will definitely overflow due to the small width of my parent
+          container Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit
+          optio officiis, nulla iure consequatur nisi accusamus explicabo culpa
+          nemo nostrum ad dicta ullam cupiditate beatae laborum autem quis neque
+          modi?
+        </div>
+      </div>
+      <PortableText value={study?.responsibilities} />
+      <PortableText value={study?.research} />
     </CaseContainer>
   );
 };
