@@ -79,8 +79,17 @@ export const ProjectRouter = createRouter()
     async resolve({ input }) {
       const study =
         await sanityClient.fetch<any>(`*[_type == 'projects' && slug.current == '${input.slug}'][0] {
-        case_study->{responsibilities, research}
-      }`);
+       'case_study': [
+        case_study->{
+          research,
+        },
+         case_study->{
+          User_persona,
+        },
+        case_study->{
+          responsibilities,
+        }
+    ]}`);
 
       const { case_study } = study;
 

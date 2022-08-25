@@ -1,4 +1,3 @@
-import { PortableText } from "@portabletext/react";
 import { createSSGHelpers } from "@trpc/react/ssg";
 import groq from "groq";
 import { GetServerSidePropsContext, GetStaticPaths, NextPage } from "next";
@@ -6,6 +5,7 @@ import { UseQueryResult } from "react-query";
 import superjson from "superjson";
 
 import CaseContainer from "../../components/layout/case";
+import ColumnItem from "../../components/ui/section/project/Column";
 import { sanityClient } from "../../libs/sanity";
 import { appRouter } from "../../server/router";
 import { Sanity } from "../../types/sanity/queries";
@@ -19,8 +19,6 @@ const Case: NextPage<{ slug: string }> = ({ slug }) => {
 
   const { data: study } = trpc.useQuery(["projects.case", { slug }]);
 
-  console.log(project);
-
   const scrollRef = useHorizontalScroll() as any;
 
   return (
@@ -30,31 +28,17 @@ const Case: NextPage<{ slug: string }> = ({ slug }) => {
       keywords={project?.keywords}
       image={project?.thumbnail?.image}
     >
-      <div ref={scrollRef} className="flex h-[45vh] w-full overflow-auto">
-        <div className="w-1/2 flex-shrink-0 border">
-          I will definitely overflow due to the small width of my parent
-          container Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit
-          optio officiis, nulla iure consequatur nisi accusamus explicabo culpa
-          nemo nostrum ad dicta ullam cupiditate beatae laborum autem quis neque
-          modi?
-        </div>
-        <div className="w-1/2 flex-shrink-0 border">
-          I will definitely overflow due to the small width of my parent
-          container Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit
-          optio officiis, nulla iure consequatur nisi accusamus explicabo culpa
-          nemo nostrum ad dicta ullam cupiditate beatae laborum autem quis neque
-          modi?
-        </div>
-        <div className="w-1/2 flex-shrink-0 border">
-          I will definitely overflow due to the small width of my parent
-          container Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit
-          optio officiis, nulla iure consequatur nisi accusamus explicabo culpa
-          nemo nostrum ad dicta ullam cupiditate beatae laborum autem quis neque
-          modi?
-        </div>
+      <div>
+        <h2>{study?.title}</h2>
       </div>
-      <PortableText value={study?.responsibilities} />
-      <PortableText value={study?.research} />
+      <section ref={scrollRef} className="flex h-[45vh] w-full overflow-auto">
+        {study &&
+          study.map((item: any, idx: number) => (
+            <p key={idx} className="w-1/2 flex-shrink-0 border-l p-6 my-4">
+              <ColumnItem {...item} />
+            </p>
+          ))}
+      </section>
     </CaseContainer>
   );
 };
