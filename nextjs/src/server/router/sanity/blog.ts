@@ -14,6 +14,7 @@ async resolve({input}) {
           slug,
 		  title,
 		  excerpt,
+      body,
         }`
     );
 

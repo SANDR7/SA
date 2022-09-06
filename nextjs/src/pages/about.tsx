@@ -63,7 +63,7 @@ const About: NextPage = () => {
       <section about="introducing myself">
         <Callout
           subTitle="Heeeeey"
-          description="I'm Sander van Ast, I have a focused eye for design and I like to code. And I love to work on computers, my health, people, cubes, bikes, Lego and most of all UI designs!"
+          description="I'm Sander van Ast, I have a focused eye for design and I like to code. And I love to work on computers, health, people, cubes, bikes, Lego and most of all UI designs!"
         >
           I also <span className="text-blue">Develop</span> for a more enjoyable
           internet

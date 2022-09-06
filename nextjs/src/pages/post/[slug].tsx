@@ -1,6 +1,8 @@
+import { PortableText } from "@portabletext/react";
 import { createSSGHelpers } from "@trpc/react/ssg";
 import groq from "groq";
 import { GetServerSidePropsContext, NextPage } from "next";
+import { ReactNode } from "react";
 import { UseQueryResult } from "react-query";
 import superjson from "superjson";
 
@@ -11,11 +13,21 @@ import { Sanity } from "../../types/sanity/queries";
 import { trpc } from "../../utils/trpc";
 
 const Blog: NextPage<{ slug: string }> = ({ slug }) => {
- const { data: blog }: UseQueryResult<any> = trpc.useQuery(
-    ["blog.single", { slug }]
-  );
+  const { data: blog }: UseQueryResult<any> = trpc.useQuery([
+    "blog.single",
+    { slug },
+  ]);
 
-  return <PageContainer title={`Post ― ${blog?.title} | Sander van Ast`}>{blog?.excerpt}</PageContainer>;
+  return (
+    <PageContainer
+      title={`Post ― ${blog?.title} | Sander van Ast`}
+      customTitle={blog?.title}
+    >
+      <article className="m-auto w-1/2">
+        <PortableText value={blog?.body} />
+      </article>
+    </PageContainer>
+  );
 };
 export async function getStaticProps(
   context: GetServerSidePropsContext<{ slug: string }>
@@ -27,8 +39,9 @@ export async function getStaticProps(
   });
   const slug = context.params?.slug as string;
 
-  await ssg.fetchQuery("projects.by-slug", {
+  await ssg.fetchQuery("blog.single", {
     slug,
+    
   });
 
   return {
