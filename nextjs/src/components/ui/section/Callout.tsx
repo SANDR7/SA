@@ -40,7 +40,7 @@ const Callout: React.FC<{
 
           laptop:text-[56px] laptop:w-10/12
 
-          desktop:text-[76px]
+          desktop:text-[72px]
            "
         >
           {children}
