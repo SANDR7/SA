@@ -71,13 +71,15 @@ export const AboutRouter = createRouter()
   })
   .query("blog-posts", {
     async resolve() {
-      const blogs = await sanityClient.fetch<Sanity.About.Posts[]>(groq`*[_type == 'blogs'] {
+      const blogs = await sanityClient.fetch<
+        Sanity.About.Posts[]
+      >(groq`*[_type == 'blogs'] |  order(_createdAt desc) {
         excerpt,
         body,
         tags,
         'slug': slug.current,
         title,
-        'createdAt': _createdAt,
+        'createdAt': _updatedAt,
       }`);
 
       return blogs;

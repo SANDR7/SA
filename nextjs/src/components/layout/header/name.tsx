@@ -1,7 +1,7 @@
-const HeaderTitle = ({ name }: { name: string }) => {
+const HeaderTitle = ({ name, className }: { name: string, className?: string }) => {
   return (
     <h1
-      className="absolute bottom-[-.5rem] 
+      className={`absolute bottom-[-.5rem] 
       overflow-hidden
       text-[36px]
       
@@ -16,7 +16,8 @@ const HeaderTitle = ({ name }: { name: string }) => {
       
       desktop:bottom-[-1.2rem]
       desktop:text-[96px] 
-     "
+      ${className}
+     `}
     >
       {name}
     </h1>

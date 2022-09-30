@@ -4,7 +4,7 @@ export const meta = {
   slogan:
     "I <span class='text-green'>Design</span> neatly styled websites with great experiences",
   description:
-    "I’m Sander an enthusiast UX designer, web developer and experienced in making things look good. And want to develop myself more in team effort!",
+    "I’m Sander an enthusiast UX designer, web developer and experienced in making things look good. Together we can make unique experiences!",
   keywords: [
     "Portfolio",
     "Sander van Ast",
@@ -14,7 +14,7 @@ export const meta = {
     "Neat styled websites",
     "Web developer",
   ],
-  domain: "https://sandervanast.website/",
+  domain: "https://sandervanast.com/",
   favicon: {
     md: "./favicon.ico", // 128
     dark: "./media/SA dark.png", // 512

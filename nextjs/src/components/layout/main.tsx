@@ -11,11 +11,12 @@ const Footer = dynamic(() => import("./footer"));
 interface PageProps {
   title: string;
   customTitle?: string;
+  className?: string;
   children: React.ReactNode;
 }
 
 const PageContainer: React.FC<PageProps> = (props) => {
-  const { title, customTitle, children } = props;
+  const { title, customTitle, className, children } = props;
   return (
     <>
       <Head>
@@ -27,7 +28,7 @@ const PageContainer: React.FC<PageProps> = (props) => {
           <Menu />
         </div>
         <div className="maxWith relative z-10">
-          <HeaderTitle name={customTitle ?? meta.name} />
+          <HeaderTitle name={customTitle ?? meta.name} className={className} />
         </div>
       </header>
 

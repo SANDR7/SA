@@ -5,6 +5,8 @@ import { UseQueryResult } from "react-query";
 import superjson from "superjson";
 
 import PageContainer from "../components/layout/main";
+import Anchor from "../components/ui/section/anchor";
+import Callout from "../components/ui/section/Callout";
 import { meta } from "../data/meta";
 import { appRouter } from "../server/router";
 import { Sanity } from "../types/sanity/queries";
@@ -32,6 +34,18 @@ const Projects: NextPage = () => {
               <ProjectCard {...project} />
             </section>
           ))}
+      </section>
+      <section about="contact me for neat project ideas">
+        <SectionHeader title="Contact me" />
+
+        <Callout subTitle="Contact">
+          <Anchor
+            name="hey@sandervanast.com"
+            className="!lowercase"
+            href="mailto:hey@sandervanast.com"
+            newTab
+          />
+        </Callout>
       </section>
     </PageContainer>
   );

@@ -6,21 +6,28 @@ import Anchor from "../anchor";
 
 const Posts: React.FC<Sanity.About.Posts> = ({
   title,
-  date,
+  createdAt,
+  body,
   tags,
   excerpt,
   slug,
 }) => {
+
   return (
     <>
       <div className="flex items-end justify-between border-b border-white-800 pb-[10px]">
         <h4 className="text-3xl font-bold">
-          <Anchor href={`/post/${slug}`}  name={title} title={title} className="text-black dark:text-white no-underline"/>
+          <Anchor
+            href={`/post/${slug}`}
+            name={title}
+            title={title}
+            className="text-black no-underline dark:text-white"
+          />
 
           <span className="text-orange">.</span>
         </h4>
         <div className="flex gap-2">
-          <span>{dayjs(date).format("DD/MM/YYYY")}</span>
+          <span>{dayjs(createdAt).format("DD/MM/YYYY")}</span>
         </div>
       </div>
       <p className="min-h-[60px] pt-[5px] !normal-case">{excerpt}</p>
@@ -44,7 +51,7 @@ const Posts: React.FC<Sanity.About.Posts> = ({
             alt="scroll indicator"
           />
         }
-        title={`Read more about ${title}`}
+        title={`Read more about: ${title}`}
         href={`/post/${slug}`}
       />
     </>

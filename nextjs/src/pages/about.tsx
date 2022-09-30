@@ -27,11 +27,6 @@ const About: NextPage = () => {
 
   const filters = [
     {
-      title: "Programming languages",
-      color: "orange",
-      value: "language",
-    },
-    {
       title: "Software programs",
       color: "green",
       value: "program",
@@ -40,6 +35,11 @@ const About: NextPage = () => {
       title: "Development tools",
       color: "blue",
       value: "tool",
+    },
+    {
+      title: "Programming languages",
+      color: "orange",
+      value: "language",
     },
     {
       title: "All skills",
@@ -77,7 +77,9 @@ const About: NextPage = () => {
               key={idx}
               onClick={() => handleSkillFilter(filter.value)}
               className={`border-y border-${filter.color} ${
-                activeFilter === filter.value ? `text-${filter.color}` : "text-black dark:text-white"
+                activeFilter === filter.value
+                  ? `text-${filter.color}`
+                  : "text-black dark:text-white"
               } cursor-pointer p-[5px] text-center tablet:p-[10px]`}
             >
               {filter.title}
@@ -93,16 +95,41 @@ const About: NextPage = () => {
         </div>
       </section>
       <section about="recent blog articles">
-        <SectionHeader title="Blog" />
+        <SectionHeader title="Blog articles" />
         <div className="grid grid-cols-1 gap-10 py-2 desktop:grid-cols-2">
           {blogs?.length ? (
-            blogs?.map((post, idx: number) => (
-              <span key={idx}>
-                <Posts {...post} />
-              </span>
-            ))
+            blogs?.map((post, idx: number) => {
+              if (!post.body) return;
+
+              return (
+                <span key={idx}>
+                  <Posts {...post} />
+                </span>
+              );
+            })
           ) : (
-            <p>No post written yet...</p>
+            <p>Loading...</p>
+          )}
+        </div>
+        <SectionHeader title="Upcoming articles" />
+        <div className="w-1/2 opacity-40">
+          {blogs?.length ? (
+            blogs?.map((post, idx: number) => {
+              if (post.body) return;
+
+              return (
+                <span key={idx} className="opacity-20 cursor-not-allowed">
+                  <h5 className="border-b border-white-800 pb-[5px] text-xl font-bold">
+                    {post.title}
+                    <span className="text-orange">.</span>
+                  </h5>
+                  <p className="min-h-[30px] pt-[2.5px]">{post.excerpt}</p>
+                  <div className="text-orange">...</div>
+                </span>
+              );
+            })
+          ) : (
+            <p>Loading...</p>
           )}
         </div>
       </section>

@@ -32,8 +32,8 @@ module.exports = {
     },
     extend: {
       transitionDuration: {
-        'DEFAULT': '400ms',
-      }
+        DEFAULT: "400ms",
+      },
     },
     screens: {
       tiny: "100px",

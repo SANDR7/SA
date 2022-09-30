@@ -26,11 +26,11 @@ const Footer = () => {
           {nowPlaying?.isPlaying ? (
             <div className="flex gap-2">
               <div className="flex flex-col text-right">
-                <span className="text-xl font-semibold">
+                <span className="font-semibold laptop:text-xl">
                   <Anchor
                     name={nowPlaying.title}
                     href={nowPlaying.songUrl}
-                    className="text-black hover:no-underline dark:text-white"
+                    className=" hover:no-underline"
                     newTab
                   />
                 </span>
@@ -49,6 +49,25 @@ const Footer = () => {
               <i className="fa-brands fa-spotify py-1 text-2xl text-[#18d985] hover:animate-spin"></i>
             </div>
           )}
+        </div>
+      </div>
+      <hr className="maxWith text-black-800"/>
+      <div className="maxWith flex justify-center p-[1rem] mobile:py-[18px] tablet:py-[19px] laptop:py-[23px] desktop:py-[28px]">
+        <div className="w-1/6 text-center">
+          Developed by <span className="text-orange">Sander</span> using{" "}
+          <Anchor
+            name="Nextjs"
+            href="https://nextjs.org/"
+            newTab
+            title="nextjs website"
+          />{" "}
+          and{" "}
+          <Anchor
+            name="Sanity.io"
+            href="https://sanity.io/"
+            newTab
+            title="sanity.io website"
+          />
         </div>
       </div>
     </footer>

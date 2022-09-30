@@ -42,7 +42,7 @@ const ProjectCard: React.FC<Sanity.Projects.Home> = ({
         >
           {!!tags && (
             <div>
-              <span className="capitalize text-green">{tags.join(" – ")}</span>
+              <span className="capitalize text-green">{tags.join(" // ")}</span>
             </div>
           )}
           <p
@@ -77,8 +77,8 @@ const ProjectCard: React.FC<Sanity.Projects.Home> = ({
             alt={thumbnail.caption}
             width={1200}
             height={800}
-            className="w-max
-              transition-[filter] ease-in-out group-hover:saturate-100
+            className="w-max transition-[filter]
+              ease-in-out group-hover:saturate-100
 
               dark:brightness-[.8]
               

@@ -38,7 +38,7 @@ const Callout: React.FC<{
 
           tablet:w-11/12 tablet:text-[40px]  tablet:leading-none tablet:w-full
 
-          laptop:text-[56px] laptop:w-10/12
+          laptop:text-[56px] laptop:w-11/12
 
           desktop:text-[72px]
            "

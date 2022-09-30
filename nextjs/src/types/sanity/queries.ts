@@ -20,6 +20,43 @@ export declare namespace Sanity {
       type: string | undefined;
     };
 
+    type Study = {
+      title: string | undefined;
+      project: {
+        keywords: string[] | undefined;
+        excerpt: string | undefined;
+        name: string | undefined;
+        thumbnail: {
+          image: string | undefined;
+          caption: string | undefined;
+        };
+      };
+      subjects?: [
+        { userflow: any | undefined },
+        { research: any[] | undefined },
+        { tasks: any[] | undefined },
+        { testing: any[] | undefined },
+        { wireframes: any[] | undefined },
+        { design: any | undefined }
+      ] | undefined;
+      stats: [
+        { value: number | string | undefined },
+        { name: number | string | undefined }
+      ];
+    };
+
+    type StudySubjects = {
+      userflow: any | undefined;
+      research: any[] | undefined;
+      tasks: any[] | undefined;
+      testing: any[] | undefined;
+      persona: any[] | undefined;
+      task: any[] | undefined;
+
+      wireframes: any[] | undefined;
+      design: any | undefined;
+    };
+    
     /**
      * A keyed type of all the codegen'ed queries. This type is used for
      * TypeScript meta programming purposes only.
@@ -60,6 +97,13 @@ export declare namespace Sanity {
       name: string;
     };
 
+    type Articles = {
+      slug: string;
+      title: string;
+      excerpt: string;
+      body: any[];
+    };
+
     type Socials = {
       media: {
         name: string;
@@ -94,7 +138,7 @@ export declare namespace Sanity {
       likes: number;
       slug: string | undefined;
       title: string | undefined;
-      date: string | undefined;
+      createdAt: string | number | Date;
       tags: string[];
     };
   }

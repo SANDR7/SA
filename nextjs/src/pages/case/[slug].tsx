@@ -1,62 +1,113 @@
+/* eslint-disable @next/next/no-img-element */
 import { createSSGHelpers } from "@trpc/react/ssg";
-import groq from "groq";
-import { GetServerSidePropsContext, GetStaticPaths, NextPage } from "next";
-import { UseQueryResult } from "react-query";
+import { GetStaticPaths, GetStaticPropsContext, NextPage } from "next";
 import superjson from "superjson";
 
 import CaseContainer from "../../components/layout/case";
+import PageContainer from "../../components/layout/main";
+import SectionHeader from "../../components/ui/section/header";
 import ColumnItem from "../../components/ui/section/project/Column";
 import { sanityClient } from "../../libs/sanity";
 import { appRouter } from "../../server/router";
 import { Sanity } from "../../types/sanity/queries";
 import { trpc } from "../../utils/trpc";
 import { useHorizontalScroll } from "../../utils/useHorizontalScroll";
+import Custom404 from "../404";
 
 const Case: NextPage<{ slug: string }> = ({ slug }) => {
-  const { data: project }: UseQueryResult<Sanity.Projects.Case> = trpc.useQuery(
-    ["projects.by-slug", { slug }]
-  );
-
-  const { data: study } = trpc.useQuery(["projects.case", { slug }]);
-
+  const project = trpc.useQuery(["projects.case", { slug }]);
   const scrollRef = useHorizontalScroll() as any;
+
+  if (project.isLoading)
+    return <PageContainer title="Loading content">Loading...</PageContainer>;
+  if (!project.data) return <Custom404 />;
+
+  const study = project.data?.case_study as Sanity.Projects.Study;
+
+  // reduce vs filter?
+  const filterSubjects = study?.subjects?.filter((subject) => {
+    return (
+      subject?.design !== null &&
+      subject?.tasks !== null &&
+      subject?.testing !== null &&
+      subject?.persona !== null &&
+      subject?.research !== null &&
+      subject?.wireframes !== null &&
+      subject?.userflow !== null
+    );
+  });
+ 
+
+  console.log("filtered", filterSubjects);
 
   return (
     <CaseContainer
-      title={project?.title}
-      description={project?.excerpt}
-      keywords={project?.keywords}
-      image={project?.thumbnail?.image}
+      title={`${study?.project.name}`}
+      description={study?.project?.excerpt}
+      keywords={study?.project?.keywords}
+      image={study?.project?.thumbnail?.image}
     >
-      <div>
-        <h2>{study?.title}</h2>
-      </div>
+      <section className="flex">
+        {study?.stats &&
+          study?.stats.map(
+            (
+              stat: { name?: number | string; value?: number | string },
+              idx: number
+            ) => (
+              <span key={idx}>
+                <SectionHeader
+                  title={`${stat.value || 0}`}
+                  className="min-w-[12.2rem]"
+                  name={stat.name as string}
+                  isText
+                />
+              </span>
+            )
+          )}
+      </section>
+      <section>
+        {filterSubjects &&
+          filterSubjects.map((column, idx: number) => {
+
+            return (
+              <div key={idx}>
+                <ColumnItem {...column}/>
+                <hr />
+              </div>
+            );
+          })}
+      </section>
       <section ref={scrollRef} className="flex h-[45vh] w-full overflow-auto">
-        {study &&
-          study.map((item: any, idx: number) => (
-            <p key={idx} className="w-1/2 flex-shrink-0 border-l p-6 my-4">
-              <ColumnItem {...item} />
-            </p>
-          ))}
+        <img
+          src={study?.project.thumbnail.image}
+          alt={study?.project.thumbnail.caption}
+        />
+        <img
+          src={study?.project.thumbnail.image}
+          alt={study?.project.thumbnail.caption}
+        />
+        <img
+          src={study?.project.thumbnail.image}
+          alt={study?.project.thumbnail.caption}
+        />
       </section>
     </CaseContainer>
   );
 };
 
 export async function getStaticProps(
-  context: GetServerSidePropsContext<{ slug: string }>
+  context: GetStaticPropsContext<{ slug: string }>
 ) {
-  const ssg = createSSGHelpers({
+  const ssg = await createSSGHelpers({
     router: appRouter,
     ctx: {} as any,
-    transformer: superjson,
+    transformer: superjson, // optional - adds superjson serialization
   });
   const slug = context.params?.slug as string;
-
-  await ssg.fetchQuery("projects.by-slug", {
+  // prefetch `post.byId`
+  await ssg.fetchQuery("projects.single", {
     slug,
   });
-
   return {
     props: {
       trpcState: ssg.dehydrate(),
@@ -67,8 +118,8 @@ export async function getStaticProps(
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const projects = await sanityClient.fetch<Sanity.Projects.Case[]>(
-    groq`*[_type == 'projects'] {'slug': slug.current}`
+  const projects = await sanityClient.fetch(
+    `*[_type == 'projects'] {'slug': slug.current}`
   );
 
   return {

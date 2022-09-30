@@ -47,7 +47,7 @@ export const ProjectRouter = createRouter()
       return projects;
     },
   })
-  .query("by-slug", {
+  .query("single", {
     input: z.object({
       slug: z.string(),
     }),
@@ -56,17 +56,7 @@ export const ProjectRouter = createRouter()
         `*[_type == 'projects' && slug.current == '${input.slug}'][0] {
         _id,
         'slug': slug.current,
-        title,
-        likes,
-        excerpt,
-        keywords,
-        'thumbnail': {
-          'image': thumbnail.asset->url,
-          'caption': thumbnail.caption
-        },
-        'contributors': contributors[]->name,
-        'stack': used_tech[]->{ name, type[0] },
-      }`
+        title}`
       );
 
       return project;
@@ -78,21 +68,54 @@ export const ProjectRouter = createRouter()
     }),
     async resolve({ input }) {
       const study =
-        await sanityClient.fetch<any>(`*[_type == 'projects' && slug.current == '${input.slug}'][0] {
-       'case_study': [
-        case_study->{
-          research,
-        },
-         case_study->{
-          User_persona,
-        },
-        case_study->{
-          responsibilities,
-        }
-    ]}`);
+        await sanityClient.fetch(`*[_type == 'projects' && slug.current == '${input.slug}'][0] {
+          'slug': slug.current,
+          case_study->{
+            title,
+            'project': {
+              'name': project->title,
+              'thumbnail': {
+                'image': project->thumbnail.asset->url,
+                'caption': project->thumbnail.caption,
+              },
+              'excerpt': project->excerpt,
+              'keywords': project->keywords,
+            },
+            'subjects': [
+              {'tasks': responsibilities},
+              {'research': research},
+              {'persona': user_persona},
+              {'testing': usability_test},
+              {'wireframes': wireframes_prototypes},
+              {'userflow': user_flow},
+              {'design': visual_design},
+            ],
+            'stats': [
+              {
+                'value': project->title,
+                'name': 'Name'
+              },
+              {
+                'value': project->type,
+                'name': 'Type'
+              },
+              {
+                'value': role,
+                'name': 'Role'
+              },
+              {
+                'value': project->duration,
+                'name': 'Duration Time'
+              },
+              {
+                'value': likes,
+                'name': 'likes'
+              },
+            ]
+          }
+        }`);
 
-      const { case_study } = study;
 
-      return case_study;
+      return study;
     },
   });
