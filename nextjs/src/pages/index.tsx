@@ -25,7 +25,7 @@ const Home: NextPage = () => {
 
   return (
     <PageContainer title={meta.title}>
-      <section about="what I can do best">
+      <section>
         <Callout subTitle="Hi There" description={meta.description}>
           {parse(meta.slogan)}
         </Callout>
@@ -38,12 +38,11 @@ const Home: NextPage = () => {
         </div>
       </section>
 
-      <section about="projects">
+      <section>
         <SectionHeader title="Recent projects" />
         {!!projects &&
           projects?.map((project) => (
             <section
-              about={project.title}
               key={project._id}
               className="group relative my-[60px] laptop:flex"
             >
@@ -51,7 +50,7 @@ const Home: NextPage = () => {
             </section>
           ))}
       </section>
-      <section about="contact me for neat project ideas">
+      <section>
         <SectionHeader title="Contact me" />
 
         <Callout subTitle="Contact">

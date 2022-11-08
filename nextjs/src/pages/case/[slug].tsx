@@ -25,39 +25,37 @@ const Case: NextPage<{ slug: string }> = ({ slug }) => {
   const study = project.data?.case_study as Sanity.Projects.Study;
 
   // reduce vs filter?
-  const filterSubjects = study?.subjects?.filter((subject) => {
+  const filterSubjects = study?.subjects?.filter((subject: any) => {
     return (
       subject?.design !== null &&
       subject?.tasks !== null &&
       subject?.testing !== null &&
       subject?.persona !== null &&
+      subject?.summery !== null &&
       subject?.research !== null &&
       subject?.wireframes !== null &&
       subject?.userflow !== null
     );
   });
- 
 
-  console.log("filtered", filterSubjects);
-
-  return (
+  return filterSubjects ? (
     <CaseContainer
       title={`${study?.project.name}`}
       description={study?.project?.excerpt}
       keywords={study?.project?.keywords}
       image={study?.project?.thumbnail?.image}
     >
-      <section className="flex">
+      <section className="mobile:grid-cols-2 tablet:grid tablet:grid-cols-3 laptop:grid-cols-5 px-4">
         {study?.stats &&
           study?.stats.map(
-            (
+            ( 
               stat: { name?: number | string; value?: number | string },
               idx: number
             ) => (
               <span key={idx}>
                 <SectionHeader
                   title={`${stat.value || 0}`}
-                  className="min-w-[12.2rem]"
+                  className="min-w-[12.2rem] capitalize"
                   name={stat.name as string}
                   isText
                 />
@@ -65,33 +63,28 @@ const Case: NextPage<{ slug: string }> = ({ slug }) => {
             )
           )}
       </section>
-      <section>
-        {filterSubjects &&
-          filterSubjects.map((column, idx: number) => {
-
+      <section className="h-[43vh]  overflow-hidden">
+        <section
+          ref={scrollRef}
+          className="flex h-[45vh] min-w-[14rem] overflow-auto overflow-y-hidden"
+        >
+          <img
+            src={study?.project.thumbnail.image}
+            alt={study?.project.thumbnail.caption}
+            className="p-6"
+          />
+          {filterSubjects.map((column, idx: number) => {
             return (
-              <div key={idx}>
-                <ColumnItem {...column}/>
-                <hr />
+              <div key={idx} className="py-6">
+                <ColumnItem {...column} />
               </div>
             );
           })}
-      </section>
-      <section ref={scrollRef} className="flex h-[45vh] w-full overflow-auto">
-        <img
-          src={study?.project.thumbnail.image}
-          alt={study?.project.thumbnail.caption}
-        />
-        <img
-          src={study?.project.thumbnail.image}
-          alt={study?.project.thumbnail.caption}
-        />
-        <img
-          src={study?.project.thumbnail.image}
-          alt={study?.project.thumbnail.caption}
-        />
+        </section>
       </section>
     </CaseContainer>
+  ) : (
+    <Custom404 />
   );
 };
 

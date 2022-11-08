@@ -60,7 +60,7 @@ const About: NextPage = () => {
 
   return (
     <PageContainer title={`${meta.name} — About`}>
-      <section about="introducing myself">
+      <section>
         <Callout
           subTitle="Heeeeey"
           description="I'm Sander van Ast, I have a focused eye for design and I like to code. And I love to work on computers, health, people, cubes, bikes, Lego and most of all UI designs!"
@@ -69,7 +69,7 @@ const About: NextPage = () => {
           internet
         </Callout>
       </section>
-      <section about="my skills">
+      <section>
         <SectionHeader title="My skills" />
         <div className="grid grid-cols-1 gap-y-6 pb-10 laptop:grid-cols-4 desktop:place-content-center desktop:place-items-center">
           {filters.map((filter, idx) => (
@@ -94,7 +94,7 @@ const About: NextPage = () => {
             filterSkills?.map((skill) => <Skill key={skill.name} {...skill} />)}
         </div>
       </section>
-      <section about="recent blog articles">
+      <section>
         <SectionHeader title="Blog articles" />
         <div className="grid grid-cols-1 gap-10 py-2 desktop:grid-cols-2">
           {blogs?.length ? (
@@ -118,7 +118,7 @@ const About: NextPage = () => {
               if (post.body) return;
 
               return (
-                <span key={idx} className="opacity-20 cursor-not-allowed">
+                <span key={idx} className="cursor-not-allowed opacity-20">
                   <h5 className="border-b border-white-800 pb-[5px] text-xl font-bold">
                     {post.title}
                     <span className="text-orange">.</span>
@@ -134,7 +134,7 @@ const About: NextPage = () => {
         </div>
       </section>
 
-      <section about="contact me for neat project ideas">
+      <section>
         <SectionHeader title="Contact me" />
 
         <Callout subTitle="Contact">

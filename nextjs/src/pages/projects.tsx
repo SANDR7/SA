@@ -27,7 +27,6 @@ const Projects: NextPage = () => {
         {!!projects &&
           projects.slice(0, 6).map((project) => (
             <section
-              about={project.title}
               key={project._id}
               className="group relative my-[60px] laptop:flex"
             >
@@ -35,7 +34,7 @@ const Projects: NextPage = () => {
             </section>
           ))}
       </section>
-      <section about="contact me for neat project ideas">
+      <section>
         <SectionHeader title="Contact me" />
 
         <Callout subTitle="Contact">

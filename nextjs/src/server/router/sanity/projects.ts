@@ -82,12 +82,13 @@ export const ProjectRouter = createRouter()
               'keywords': project->keywords,
             },
             'subjects': [
+             {'summery': project->summery},
               {'tasks': responsibilities},
               {'research': research},
+              {'concept': concept},
               {'persona': user_persona},
               {'testing': usability_test},
               {'wireframes': wireframes_prototypes},
-              {'userflow': user_flow},
               {'design': visual_design},
             ],
             'stats': [
@@ -114,7 +115,6 @@ export const ProjectRouter = createRouter()
             ]
           }
         }`);
-
 
       return study;
     },

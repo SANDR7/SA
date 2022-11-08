@@ -31,14 +31,17 @@ export declare namespace Sanity {
           caption: string | undefined;
         };
       };
-      subjects?: [
-        { userflow: any | undefined },
-        { research: any[] | undefined },
-        { tasks: any[] | undefined },
-        { testing: any[] | undefined },
-        { wireframes: any[] | undefined },
-        { design: any | undefined }
-      ] | undefined;
+      subjects?:
+        | [
+            { concept: any | undefined },
+            { research: any[] | undefined },
+            { tasks: any[] | undefined },
+            { testing: any[] | undefined },
+            { summery: any[] | undefined },
+            { wireframes: any[] | undefined },
+            { design: any | undefined }
+          ]
+        | undefined;
       stats: [
         { value: number | string | undefined },
         { name: number | string | undefined }
@@ -46,11 +49,12 @@ export declare namespace Sanity {
     };
 
     type StudySubjects = {
-      userflow: any | undefined;
+      concept: any | undefined;
       research: any[] | undefined;
       tasks: any[] | undefined;
       testing: any[] | undefined;
       persona: any[] | undefined;
+      summery: any[] | undefined;
       task: any[] | undefined;
 
       wireframes: any[] | undefined;
