@@ -25,6 +25,11 @@ export default {
       type: "image",
     },
     {
+      name: 'business_file',
+      title: 'Business file',
+      type: 'file',
+    },
+    {
       name: "bio",
       title: "Bio",
       description: "Tell me about yourself",

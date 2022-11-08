@@ -84,6 +84,19 @@ export default {
       },
     },
     {
+      name: 'duration',
+      title: 'Duration  Time',
+      initialValue: '1 week',
+      type: 'string',
+    },
+    {
+      name: 'likes',
+      title: 'Likes',
+      type: 'number',
+      initialValue: 0,
+    },
+  
+    {
       name: "gallery",
       title: "Gallery",
       description: "Context images showing the progress",
@@ -117,6 +130,11 @@ export default {
     //   description: 'show Item on portfolio website',
     //   type: 'boolean',
     // },
+    {
+      name: 'highlighted',
+      title: 'Highlighted',
+      type: 'boolean',
+    },
     {
       name: "type",
       title: "Type",
@@ -177,7 +195,7 @@ export default {
       hidden: ({ document }) => {
         return showField(document, "website");
       },
-      validation: (Rule) => Rule.max(4).unique(),
+      validation: (Rule) => Rule.max(6).unique(),
     },
     // Graphic inputs
     {

@@ -10,6 +10,12 @@ export default {
       type: "string",
     },
     {
+      name: 'role',
+      title: 'Role',
+      description: 'Developer, Product owner, Designer, Researcher',
+      type: 'string',
+    },
+    {
       name: "project",
       title: "Project",
       type: "reference",
@@ -30,37 +36,41 @@ export default {
       of: [{ type: "block" }],
     },
     {
-      name: "User_persona",
+      name: "concept",
+      title: "Concept",
+      descirption: 'diagrams / sketches',
+      type: "image",
+    },
+    {
+      name: "user_persona",
       title: "User persona & journey",
       type: "array",
       of: [{ type: "block" }, { type: "image" }],
     },
     {
-      name: "User_flow",
-      title: "User flow",
-      type: "image",
+      name: "usability_test",
+      title: "Usability Test",
+      type: "array",
+      of: [{ type: "block" }],
     },
     {
       name: "wireframes_prototypes",
       title: "Wireframes & Prototype",
+      description: 'draft / low fidelity / high fidelity / functional ',
       type: "array",
       of: [{ type: "image" }],
       options: {
         layout: "grid",
       },
+      validation: (Rule) => Rule.max(4).required(),
     },
     {
       name: "visual_design",
       title: "Visual design",
+      description: 'Shareable visual UI graphic design',
       type: "image",
     },
-    {
-      name: "test",
-      title: "Test",
-      description: "Usability test",
-      type: "array",
-      of: [{ type: "block" }],
-    },
+ 
   ],
   preview: {
     select: {
