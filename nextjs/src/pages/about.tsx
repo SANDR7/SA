@@ -94,45 +94,7 @@ const About: NextPage = () => {
             filterSkills?.map((skill) => <Skill key={skill.name} {...skill} />)}
         </div>
       </section>
-      <section>
-        <SectionHeader title="Blog articles" />
-        <div className="grid grid-cols-1 gap-10 py-2 desktop:grid-cols-2">
-          {blogs?.length ? (
-            blogs?.map((post, idx: number) => {
-              if (!post.body) return;
-
-              return (
-                <span key={idx}>
-                  <Posts {...post} />
-                </span>
-              );
-            })
-          ) : (
-            <p>Loading...</p>
-          )}
-        </div>
-        <SectionHeader title="Upcoming articles" />
-        <div className="w-1/2 opacity-40">
-          {blogs?.length ? (
-            blogs?.map((post, idx: number) => {
-              if (post.body) return;
-
-              return (
-                <span key={idx} className="cursor-not-allowed opacity-20">
-                  <h5 className="border-b border-white-800 pb-[5px] text-xl font-bold">
-                    {post.title}
-                    <span className="text-orange">.</span>
-                  </h5>
-                  <p className="min-h-[30px] pt-[2.5px]">{post.excerpt}</p>
-                  <div className="text-orange">...</div>
-                </span>
-              );
-            })
-          ) : (
-            <p>Loading...</p>
-          )}
-        </div>
-      </section>
+     
 
       <section>
         <SectionHeader title="Contact me" />
