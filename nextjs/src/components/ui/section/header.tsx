@@ -1,6 +1,6 @@
 import React from "react";
 
-const SectionHeader: React.FC<{ title: string; name?: string; isText?: boolean; className?: string; }> = ({
+const SectionHeader: React.FC<{ title: any; name?: string; isText?: boolean; className?: string; }> = ({
   title,
   className,
   name,

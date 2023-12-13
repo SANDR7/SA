@@ -79,7 +79,7 @@ const Case: NextPage<{ slug: string }> = ({ slug }) => {
         <section>
           <SectionHeader
             title={
-              <Anchor href={study.report} newTab name="Design Report" title="Design report" />
+              <Anchor href={`${study.report}`} newTab name="Design Report" title="Design report" />
             }
             name={`report of ${study.project.name}`}
           />
