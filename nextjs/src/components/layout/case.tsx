@@ -47,7 +47,7 @@ const CaseContainer: React.FC<PageProps> = (props) => {
           <Menu />
         </div>
         <div className="maxWith relative z-10">
-          <HeaderTitle name="Case Study" />
+          <HeaderTitle name="Work in progress" />
         </div>
       </header>
 

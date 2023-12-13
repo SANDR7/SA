@@ -29,12 +29,12 @@ export default {
       title: 'Business file',
       type: 'file',
     },
-    {
-      name: "bio",
-      title: "Bio",
-      description: "Tell me about yourself",
-      type: "markdown",
-    },
+    // {
+    //   name: "bio",
+    //   title: "Bio",
+    //   description: "Tell me about yourself",
+    //   type: "markdown",
+    // },
     {
       name: "socials",
       title: "Social media",

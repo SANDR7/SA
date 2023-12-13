@@ -4,7 +4,7 @@ export const meta = {
   slogan:
     "I <span class='text-green'>Design</span> neatly styled websites with great experiences",
   description:
-    "I’m Sander an enthusiast UX designer, web developer and experienced in making things look good. Together we can make unique experiences!",
+    "I’m Sander an enthusiast UX designer, web developer and like to make things look good. Maybe we can make unique experiences in the future!",
   keywords: [
     "Portfolio",
     "Sander van Ast",

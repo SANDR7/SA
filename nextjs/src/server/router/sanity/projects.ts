@@ -56,7 +56,9 @@ export const ProjectRouter = createRouter()
         `*[_type == 'projects' && slug.current == '${input.slug}'][0] {
         _id,
         'slug': slug.current,
-        title}`
+        title,
+        'report': report.asset->url
+      }`
       );
 
       return project;
@@ -107,12 +109,9 @@ export const ProjectRouter = createRouter()
               {
                 'value': project->duration,
                 'name': 'Duration Time'
-              },
-              {
-                'value': likes,
-                'name': 'likes'
-              },
-            ]
+              }
+            ],
+            'report': project->report.asset->url,
           }
         }`);
 

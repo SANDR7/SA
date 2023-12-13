@@ -51,17 +51,36 @@ const Footer = () => {
           )}
         </div>
       </div>
-      <hr className="maxWith text-black-800"/>
+      <hr className="maxWith text-black-800" />
+      <div className="maxWith flex justify-between mobile:py-[18px] tablet:py-[38px] laptop:py-[46px] desktop:py-[23px]">
+        <ul className="socials flex tiny:flex-col mobile:gap-[12px]  tablet:flex-row tablet:gap-[8px] laptop:gap-[11px]">
+          <li>
+            <Anchor
+              href="https://v0.archive.sandervanast.site/"
+              name="Portfolio V1"
+              className="!text-white-800 tablet:p-[.8rem] laptop:p-[1rem] laptop:text-[14px]"
+              newTab
+            />
+            <Anchor
+              href="https://v1.archive.sandervanast.site/"
+              name="Portfolio V2"
+              className="!text-white-800 tablet:p-[.8rem] laptop:p-[1rem] laptop:text-[14px]"
+              newTab
+            />
+          </li>
+        </ul>
+      </div>
+      <hr className="maxWith text-black-800" />
       <div className="maxWith flex justify-center p-[1rem] mobile:py-[18px] tablet:py-[19px] laptop:py-[23px] desktop:py-[28px]">
-        <div className="w-1/6 text-center">
-          Developed by <span className="text-orange">Sander</span> using{" "}
+        <div className="w-1/4 text-center">
+        This website is made from scratch with {" "}
           <Anchor
             name="Nextjs"
             href="https://nextjs.org/"
             newTab
             title="nextjs website"
           />{" "}
-          and{" "}
+          &{" "}
           <Anchor
             name="Sanity.io"
             href="https://sanity.io/"

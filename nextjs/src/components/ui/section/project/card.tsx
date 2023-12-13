@@ -59,11 +59,14 @@ const ProjectCard: React.FC<Sanity.Projects.Home> = ({
           </strong>
           <Anchor
             name={
+              <div className="flex gap-2 group/link">
+              view case
               <img
                 src="./assets/ArrowRight.png"
-                className="py-2 transition-transform hover:translate-x-5"
+                className="py-2 transition-transform group-hover/link:translate-x-5"
                 alt="scroll indicator"
-              />
+                />
+                </div>
             }
             title={`Case study of ${title}`}
             href={`case/${slug}`}
@@ -77,6 +80,7 @@ const ProjectCard: React.FC<Sanity.Projects.Home> = ({
             alt={thumbnail.caption}
             width={1200}
             height={800}
+            title={`view demo of ${title}`}
             className="w-max transition-[filter]
               ease-in-out group-hover:saturate-100
 

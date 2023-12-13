@@ -5,8 +5,8 @@ import superjson from "superjson";
 
 import CaseContainer from "../../components/layout/case";
 import PageContainer from "../../components/layout/main";
+import Anchor from "../../components/ui/section/anchor";
 import SectionHeader from "../../components/ui/section/header";
-import ColumnItem from "../../components/ui/section/project/Column";
 import { sanityClient } from "../../libs/sanity";
 import { appRouter } from "../../server/router";
 import { Sanity } from "../../types/sanity/queries";
@@ -45,10 +45,10 @@ const Case: NextPage<{ slug: string }> = ({ slug }) => {
       keywords={study?.project?.keywords}
       image={study?.project?.thumbnail?.image}
     >
-      <section className="mobile:grid-cols-2 tablet:grid tablet:grid-cols-3 laptop:grid-cols-5 px-4">
+      <section className="px-4 mobile:grid-cols-2 tablet:grid tablet:grid-cols-3 laptop:grid-cols-5">
         {study?.stats &&
           study?.stats.map(
-            ( 
+            (
               stat: { name?: number | string; value?: number | string },
               idx: number
             ) => (
@@ -73,15 +73,18 @@ const Case: NextPage<{ slug: string }> = ({ slug }) => {
             alt={study?.project.thumbnail.caption}
             className="p-6"
           />
-          {filterSubjects.map((column, idx: number) => {
-            return (
-              <div key={idx} className="py-6">
-                <ColumnItem {...column} />
-              </div>
-            );
-          })}
         </section>
       </section>
+      {study.report && (
+        <section>
+          <SectionHeader
+            title={
+              <Anchor href={study.report} newTab name="Design Report" title="Design report" />
+            }
+            name={`report of ${study.project.name}`}
+          />
+        </section>
+      )}
     </CaseContainer>
   ) : (
     <Custom404 />

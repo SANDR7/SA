@@ -55,9 +55,9 @@ const Home: NextPage = () => {
 
         <Callout subTitle="Contact">
           <Anchor
-            name="hey@sandervanast.com"
+            name="sandervanast@outlook.com"
             className="!lowercase"
-            href="mailto:hey@sandervanast.com"
+            href="mailto:sandervanast@outlook.com"
             newTab
           />
         </Callout>

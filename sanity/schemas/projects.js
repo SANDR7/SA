@@ -112,12 +112,13 @@ export default {
       type: "reference",
       to: [{ type: "case_studies" }],
     },
-    {
-      title: "Summery",
-      name: "summery",
-      description: "Explain what the project is about",
-      type: "markdown",
-    },
+  
+    // {
+    //   title: "Summery",
+    //   name: "summery",
+    //   description: "Explain what the project is about",
+    //   type: "markdown",
+    // },
     {
       name: "contributors",
       title: "Contributors",
@@ -143,11 +144,22 @@ export default {
       options: {
         list: [
           { value: "website", title: "Website" },
+          { value: "concept", title: "Concept" },
           { value: "graphic", title: "Graphic" },
           { value: "brand", title: "Brand" },
         ],
       },
       validation: (Rule) => Rule.max(1).required(),
+    },
+    // Concept inputs
+    {
+      name: "report",
+      title: "Design Report",
+      description: 'Written report of project',
+      type: "file",
+      hidden: ({ document }) => {
+        return showField(document, "concept");
+      },
     },
     // Website inputs
     {

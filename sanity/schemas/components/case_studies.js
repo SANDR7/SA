@@ -21,38 +21,38 @@ export default {
       type: "reference",
       to: [{ type: "projects" }],
     },
-    {
-      name: "responsibilities",
-      title: "Responsibilities",
-      description: "Role & Responsibilities",
-      type: "array",
-      of: [{ type: "block" }],
-    },
-    {
-      name: "research",
-      title: "Research",
-      description: "Problem / Goals / Solution",
-      type: "array",
-      of: [{ type: "block" }],
-    },
+    // {
+    //   name: "responsibilities",
+    //   title: "Responsibilities",
+    //   description: "Role & Responsibilities",
+    //   type: "array",
+    //   of: [{ type: "block" }],
+    // },
+    // {
+    //   name: "research",
+    //   title: "Research",
+    //   description: "Problem / Goals / Solution",
+    //   type: "array",
+    //   of: [{ type: "block" }],
+    // },
     {
       name: "concept",
       title: "Concept",
       descirption: 'diagrams / sketches',
       type: "image",
     },
-    {
-      name: "user_persona",
-      title: "User persona & journey",
-      type: "array",
-      of: [{ type: "block" }, { type: "image" }],
-    },
-    {
-      name: "usability_test",
-      title: "Usability Test",
-      type: "array",
-      of: [{ type: "block" }],
-    },
+    // {
+    //   name: "user_persona",
+    //   title: "User persona & journey",
+    //   type: "array",
+    //   of: [{ type: "block" }, { type: "image" }],
+    // },
+    // {
+    //   name: "usability_test",
+    //   title: "Usability Test",
+    //   type: "array",
+    //   of: [{ type: "block" }],
+    // },
     {
       name: "wireframes_prototypes",
       title: "Wireframes & Prototype",
@@ -70,8 +70,9 @@ export default {
       description: 'Shareable visual UI graphic design',
       type: "image",
     },
- 
+   
   ],
+  
   preview: {
     select: {
       title: "title",
@@ -84,4 +85,5 @@ export default {
       };
     },
   },
+
 };

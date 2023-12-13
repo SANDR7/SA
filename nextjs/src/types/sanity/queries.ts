@@ -31,6 +31,10 @@ export declare namespace Sanity {
           caption: string | undefined;
         };
       };
+      report?: {
+        asset: string;
+        _type: string;
+      };
       subjects?:
         | [
             { concept: any | undefined },
