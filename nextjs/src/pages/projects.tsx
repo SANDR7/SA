@@ -1,13 +1,15 @@
 import { createSSGHelpers } from "@trpc/react/ssg";
-import type { GetStaticPropsContext } from "next";
+import type { GetStaticPropsContext, NextPage } from "next";
 import dynamic from "next/dynamic";
 import { UseQueryResult } from "react-query";
 import superjson from "superjson";
 
-import PageContainer from "../components/layout";
+import PageContainer from "../components/layout/main";
+import Anchor from "../components/ui/section/anchor";
+import Callout from "../components/ui/section/Callout";
 import { meta } from "../data/meta";
 import { appRouter } from "../server/router";
-import { Sanity } from "../types/sanity/home.queries";
+import { Sanity } from "../types/sanity/queries";
 import { trpc } from "../utils/trpc";
 
 const ProjectCard = dynamic(
@@ -15,23 +17,34 @@ const ProjectCard = dynamic(
 );
 const SectionHeader = dynamic(() => import("../components/ui/section/header"));
 
-const Projects = () => {
-  const { data: projects, isLoading }: UseQueryResult<Sanity.Projects.Home[]> =
+const Projects: NextPage = () => {
+  const { data: projects }: UseQueryResult<Sanity.Projects.Home[]> =
     trpc.useQuery(["projects.all"]);
   return (
-    <PageContainer title={meta.title + "Projects"}>
+    <PageContainer title={`${meta.name} — Projects`}>
       <section>
         <SectionHeader title="Projects collection" />
         {!!projects &&
-          projects.slice(0,6).map((project) => (
+          projects.slice(0, 6).map((project) => (
             <section
-              about={project.title}
               key={project._id}
-              className="my-[60px] group relative laptop:flex"
+              className="group relative my-[60px] laptop:flex"
             >
               <ProjectCard {...project} />
             </section>
           ))}
+      </section>
+      <section>
+        <SectionHeader title="Contact me" />
+
+        <Callout subTitle="Contact">
+          <Anchor
+            name="hey@sandervanast.com"
+            className="!lowercase"
+            href="mailto:hey@sandervanast.com"
+            newTab
+          />
+        </Callout>
       </section>
     </PageContainer>
   );

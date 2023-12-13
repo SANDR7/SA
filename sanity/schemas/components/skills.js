@@ -23,6 +23,11 @@ export default {
       },
     },
     {
+      name: 'link',
+      title: 'Link',
+      type: 'url',
+    },
+    {
       name: "tags",
       title: "Tags",
       type: "array",

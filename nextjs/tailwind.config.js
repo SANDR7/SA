@@ -31,8 +31,8 @@ module.exports = {
       },
     },
     extend: {
-      aspectRatio: {
-        "4/3": "4 / 3",
+      transitionDuration: {
+        DEFAULT: "400ms",
       },
     },
     screens: {

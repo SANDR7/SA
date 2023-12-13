@@ -2,19 +2,21 @@ import Link from "next/link";
 import React from "react";
 
 const Anchor: React.FC<{
-  name: string;
+  name: string | React.ReactNode;
   href: string;
+  title?: string;
   className?: string;
   newTab?: boolean;
   onClick?: React.MouseEventHandler<HTMLAnchorElement> | undefined;
-}> = ({ name, className, href, newTab, onClick }) => {
-  const defaultStyle = "text-red capitalize hover:underline";
+}> = ({ name, className, href, newTab, title, onClick }) => {
+  const defaultStyle = "capitalize text-red hover:underline";
 
   if (newTab)
     return (
       <a
         href={href}
         className={`${className} ${defaultStyle}`}
+        title={title}
         rel="noreferrer"
         target={"_blank"}
       >
@@ -23,8 +25,10 @@ const Anchor: React.FC<{
     );
 
   return (
-    <Link href={href as string}>
-      <a className={`${className} ${defaultStyle}`}>{name}</a>
+    <Link href={href}>
+      <a className={`${className} ${defaultStyle}`} title={title?.toLowerCase()}>
+        {name}
+      </a>
     </Link>
   );
 };

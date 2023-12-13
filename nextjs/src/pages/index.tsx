@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { createSSGHelpers } from "@trpc/react/ssg";
 import parse from "html-react-parser";
 import type { GetStaticPropsContext, NextPage } from "next";
@@ -5,10 +6,10 @@ import dynamic from "next/dynamic";
 import { UseQueryResult } from "react-query";
 import superjson from "superjson";
 
-import PageContainer from "../components/layout";
+import PageContainer from "../components/layout/main";
 import { meta } from "../data/meta";
 import { appRouter } from "../server/router";
-import { Sanity } from "../types/sanity/home.queries";
+import { Sanity } from "../types/sanity/queries";
 import { trpc } from "../utils/trpc";
 
 const ProjectCard = dynamic(
@@ -19,38 +20,44 @@ const SectionHeader = dynamic(() => import("../components/ui/section/header"));
 const Anchor = dynamic(() => import("../components/ui/section/anchor"));
 
 const Home: NextPage = () => {
-  const { data: projects, isLoading }: UseQueryResult<Sanity.Projects.Home[]> =
+  const { data: projects }: UseQueryResult<Sanity.Projects.Home[]> =
     trpc.useQuery(["projects.home"]);
 
   return (
-    <PageContainer title={meta.title + "Web Designer, Developer & Consumer"}>
-      <section about="what I can do best">
+    <PageContainer title={meta.title}>
+      <section>
         <Callout subTitle="Hi There" description={meta.description}>
           {parse(meta.slogan)}
         </Callout>
+        <div className="w-fill relative h-9 animate-bounce">
+          <img
+            src="./assets/ArrowDown.png"
+            className="absolute dark:invert tiny:hidden mobile:right-0 mobile:block laptop:bottom-[5rem] laptop:left-0"
+            alt="scroll indicator"
+          />
+        </div>
       </section>
 
-      <section about="projects">
+      <section>
         <SectionHeader title="Recent projects" />
         {!!projects &&
           projects?.map((project) => (
             <section
-              about={project.title}
               key={project._id}
-              className="my-[60px] group relative laptop:flex"
+              className="group relative my-[60px] laptop:flex"
             >
               <ProjectCard {...project} />
             </section>
           ))}
       </section>
-      <section about="contact me for neat project ideas">
+      <section>
         <SectionHeader title="Contact me" />
 
         <Callout subTitle="Contact">
           <Anchor
-            name="media@sandervanast.com"
+            name="sandervanast@outlook.com"
             className="!lowercase"
-            href="mailto:media@sandervanast.com"
+            href="mailto:sandervanast@outlook.com"
             newTab
           />
         </Callout>
@@ -65,7 +72,7 @@ export async function getStaticProps(context: GetStaticPropsContext) {
     ctx: {} as any,
     transformer: superjson, // optional - adds superjson serialization
   });
-  // prefetch from server
+
   await ssg.fetchQuery("projects.home");
 
   return {

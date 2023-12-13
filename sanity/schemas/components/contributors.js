@@ -25,11 +25,16 @@ export default {
       type: "image",
     },
     {
-      name: "bio",
-      title: "Bio",
-      description: "Tell me about yourself",
-      type: "markdown",
+      name: 'business_file',
+      title: 'Business file',
+      type: 'file',
     },
+    // {
+    //   name: "bio",
+    //   title: "Bio",
+    //   description: "Tell me about yourself",
+    //   type: "markdown",
+    // },
     {
       name: "socials",
       title: "Social media",

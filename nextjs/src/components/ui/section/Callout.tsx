@@ -2,14 +2,14 @@ import React from "react";
 
 const Callout: React.FC<{
   subTitle: string;
-  description?: string;
+  description?: string | React.ReactNode;
   children: React.ReactNode;
 }> = ({ subTitle, description, children }) => {
   return (
     <>
       <span
-        className="font-bold text-white-600 dark:text-black-600
-            text-[48px]
+        className="text-[48px] font-bold text-white-600
+            dark:text-black-600
 
             tablet:text-[62px]
 
@@ -27,25 +27,25 @@ const Callout: React.FC<{
 
           tablet:left-[.8rem] tablet:top-[-2.2rem]
 
-          laptop:left-[1rem] laptop:top-[-3.2rem]
+          laptop:left-[1rem] laptop:top-[-3.2rem] 
 
           desktop:left-[6rem] desktop:top-[-6rem]
         "
       >
         <h2
-          className="font-bold 
-           text-[24px]  leading-[1.3] 
+          className="text-[28px] 
+          font-bold leading-[1.3]
 
-           tablet:text-[40px] tablet:leading-none  tablet:w-11/12
+          tablet:w-11/12 tablet:text-[40px]  tablet:leading-none tablet:w-full
 
-            laptop:text-[56px]
+          laptop:text-[56px] laptop:w-11/12
 
-            desktop:text-[76px]
+          desktop:text-[72px]
            "
         >
           {children}
         </h2>
-        <p className="tablet:w-8/12 desktop:w-4/12 opacity-70 mt-4">
+        <p className="mt-4 opacity-70 tablet:w-8/12 desktop:w-5/12">
           {description}
         </p>
       </span>

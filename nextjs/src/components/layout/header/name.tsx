@@ -1,22 +1,23 @@
-const HeaderTitle = ({ name }: { name: string }) => {
+const HeaderTitle = ({ name, className }: { name: string, className?: string }) => {
   return (
     <h1
-      className="absolute leading-none 
-      tiny:hidden
-      mobile:block
-      
-      overflow-hidden opacity-[80%]
-      font-medium text-orange
-
+      className={`absolute bottom-[-.5rem] 
+      overflow-hidden
       text-[36px]
-      bottom-[-.5rem] 
       
-      tablet:text-[52px]
-      tablet:bottom-[-.6rem] 
+      font-semibold leading-none
+      text-orange opacity-[80%]
+
+      tiny:hidden
+      mobile:block 
       
-      desktop:text-[96px]
-      desktop:bottom-[-1.2rem] 
-     "
+      tablet:bottom-[-.6rem]
+      tablet:text-[52px] 
+      
+      desktop:bottom-[-1.2rem]
+      desktop:text-[96px] 
+      ${className}
+     `}
     >
       {name}
     </h1>

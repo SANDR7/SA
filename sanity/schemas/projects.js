@@ -84,6 +84,19 @@ export default {
       },
     },
     {
+      name: 'duration',
+      title: 'Duration  Time',
+      initialValue: '1 week',
+      type: 'string',
+    },
+    {
+      name: 'likes',
+      title: 'Likes',
+      type: 'number',
+      initialValue: 0,
+    },
+  
+    {
       name: "gallery",
       title: "Gallery",
       description: "Context images showing the progress",
@@ -99,12 +112,13 @@ export default {
       type: "reference",
       to: [{ type: "case_studies" }],
     },
-    {
-      title: "Summery",
-      name: "summery",
-      description: "Explain what the project is about",
-      type: "markdown",
-    },
+  
+    // {
+    //   title: "Summery",
+    //   name: "summery",
+    //   description: "Explain what the project is about",
+    //   type: "markdown",
+    // },
     {
       name: "contributors",
       title: "Contributors",
@@ -118,6 +132,11 @@ export default {
     //   type: 'boolean',
     // },
     {
+      name: 'highlighted',
+      title: 'Highlighted',
+      type: 'boolean',
+    },
+    {
       name: "type",
       title: "Type",
       type: "array",
@@ -125,11 +144,22 @@ export default {
       options: {
         list: [
           { value: "website", title: "Website" },
+          { value: "concept", title: "Concept" },
           { value: "graphic", title: "Graphic" },
           { value: "brand", title: "Brand" },
         ],
       },
       validation: (Rule) => Rule.max(1).required(),
+    },
+    // Concept inputs
+    {
+      name: "report",
+      title: "Design Report",
+      description: 'Written report of project',
+      type: "file",
+      hidden: ({ document }) => {
+        return showField(document, "concept");
+      },
     },
     // Website inputs
     {
@@ -177,7 +207,7 @@ export default {
       hidden: ({ document }) => {
         return showField(document, "website");
       },
-      validation: (Rule) => Rule.max(4).unique(),
+      validation: (Rule) => Rule.max(6).unique(),
     },
     // Graphic inputs
     {

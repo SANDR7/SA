@@ -1,4 +1,5 @@
 import Document, { Head, Html, Main, NextScript } from "next/document";
+import Script from "next/script";
 import { meta } from "../data/meta";
 
 export default class _Document extends Document {
@@ -37,8 +38,14 @@ export default class _Document extends Document {
           <meta name="twitter:card" content="summary" />
           <meta name="twitter:image" content={meta.favicon.dark} />
           <meta name="twitter:description" content={meta.description} />
+
+          {/* libs */}
+          <Script
+            src="https://kit.fontawesome.com/e48f77a7cf.js"
+            strategy="afterInteractive"
+          />
         </Head>
-        <body className="dark:text-black-text text-white-text selection:bg-section-light selection:dark:bg-section-dark">
+        <body className="bg-white-600 text-white-text selection:bg-section-light dark:bg-black-600 dark:text-black-text selection:dark:bg-section-dark">
           <Main />
           <NextScript />
         </body>
