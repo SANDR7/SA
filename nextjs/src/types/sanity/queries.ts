@@ -105,6 +105,9 @@ export declare namespace Sanity {
       name: string;
     };
 
+    type Contact = {
+      email: string;
+    }
     type Articles = {
       slug: string;
       title: string;

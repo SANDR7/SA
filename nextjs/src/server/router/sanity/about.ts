@@ -19,14 +19,14 @@ export const AboutRouter = createRouter()
   })
   .query("email", {
     async resolve() {
-      const CV = await sanityClient.fetch<Sanity.About.CV>(
+      const Contact = await sanityClient.fetch<Sanity.About.Contact>(
         groq`*[_type== 'contributors' && name match 'Sander van Ast'][0] {
           name, 
           'email': email
         }`
       );
 
-      return CV;
+      return Contact;
     },
   })
   .query("socials", {
