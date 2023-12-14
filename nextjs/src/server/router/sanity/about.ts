@@ -17,6 +17,18 @@ export const AboutRouter = createRouter()
       return CV;
     },
   })
+  .query("email", {
+    async resolve() {
+      const CV = await sanityClient.fetch<Sanity.About.CV>(
+        groq`*[_type== 'contributors' && name match 'Sander van Ast'][0] {
+          name, 
+          'email': email
+        }`
+      );
+
+      return CV;
+    },
+  })
   .query("socials", {
     async resolve() {
       const socials =

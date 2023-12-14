@@ -23,6 +23,8 @@ const Home: NextPage = () => {
   const { data: projects }: UseQueryResult<Sanity.Projects.Home[]> =
     trpc.useQuery(["projects.home"]);
 
+  const { data: contact } = trpc.useQuery(["about.email"]);
+
   return (
     <PageContainer title={meta.title}>
       <section>
@@ -55,9 +57,9 @@ const Home: NextPage = () => {
 
         <Callout subTitle="Contact">
           <Anchor
-            name="sandervanast@outlook.com"
+            name={`${contact?.email}`}
             className="!lowercase"
-            href="mailto:sandervanast@outlook.com"
+            href={`mailto:${contact?.email}`}
             newTab
           />
         </Callout>

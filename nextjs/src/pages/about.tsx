@@ -7,7 +7,6 @@ import { appRouter } from "../server/router";
 
 import { useState } from "react";
 import PageContainer from "../components/layout/main";
-import Posts from "../components/ui/section/about/posts";
 import SectionHeader from "../components/ui/section/header";
 import { meta } from "../data/meta";
 import { trpc } from "../utils/trpc";
@@ -19,6 +18,7 @@ const Anchor = dynamic(() => import("../components/ui/section/anchor"));
 const About: NextPage = () => {
   const { data: skills } = trpc.useQuery(["about.skills"]);
   const { data: blogs } = trpc.useQuery(["about.blog-posts"]);
+  const { data: contact } = trpc.useQuery(["about.email"]);
 
   const [activeFilter, setActiveFilter] = useState("All");
   const [filterSkills, setFilterSkills] = useState(skills);
@@ -94,16 +94,15 @@ const About: NextPage = () => {
             filterSkills?.map((skill) => <Skill key={skill.name} {...skill} />)}
         </div>
       </section>
-     
 
       <section>
         <SectionHeader title="Contact me" />
 
         <Callout subTitle="Contact">
           <Anchor
-            name="sandervanast@outlook.com"
+            name={`${contact?.email}`}
             className="!lowercase"
-            href="mailto:sandervanast@outlook.com"
+            href={`mailto:${contact?.email}`}
             newTab
           />
         </Callout>

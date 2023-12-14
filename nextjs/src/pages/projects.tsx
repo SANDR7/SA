@@ -20,6 +20,8 @@ const SectionHeader = dynamic(() => import("../components/ui/section/header"));
 const Projects: NextPage = () => {
   const { data: projects }: UseQueryResult<Sanity.Projects.Home[]> =
     trpc.useQuery(["projects.all"]);
+  const { data: contact } = trpc.useQuery(["about.email"]);
+
   return (
     <PageContainer title={`${meta.name} — Projects`}>
       <section>
@@ -39,9 +41,9 @@ const Projects: NextPage = () => {
 
         <Callout subTitle="Contact">
           <Anchor
-            name="sandervanast@outlook.com"
+            name={`${contact?.email}`}
             className="!lowercase"
-            href="mailto:sandervanast@outlook.com"
+            href={`mailto:${contact?.email}`}
             newTab
           />
         </Callout>
