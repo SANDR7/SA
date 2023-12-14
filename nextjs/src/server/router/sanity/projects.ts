@@ -99,6 +99,10 @@ export const ProjectRouter = createRouter()
                 'name': 'Name'
               },
               {
+                'value': project->client,
+                'name': 'Client'
+              },
+              {
                 'value': project->type,
                 'name': 'Type'
               },
@@ -106,6 +110,7 @@ export const ProjectRouter = createRouter()
                 'value': role,
                 'name': 'Role'
               },
+            
               {
                 'value': project->duration,
                 'name': 'Duration Time'
